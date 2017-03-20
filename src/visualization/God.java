@@ -23,6 +23,7 @@ import model.*;
  */
 public class God extends JPanel{
 	// This is a very good IDEA TEEEESSST
+    // tessttststts osdfjösldkfjölaksdjf
 	// Properties of the visualization
 	private final static int NUMBER_OF_AGENTS = 1000;
 	private final static int WIDTH = 1720;
