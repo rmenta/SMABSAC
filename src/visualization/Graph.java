@@ -11,7 +11,7 @@ public class Graph {
     private String graphName;
     private String xAxisLabel, yAxisLabel;
     private LinkedList<Integer> xCoords, yCoords;
-    private final static int WIDTH=200, HEIGHT=100;
+    private final static int WIDTH = 160, HEIGHT = 100;
 
     private int posX, posY;
 
@@ -36,7 +36,14 @@ public class Graph {
         this.yCoords = yCoords;
 
     }
+    
     public void paintComponent(Graphics g){
-        g.drawRect(posX, posY, WIDTH, HEIGHT);
+    	int textHeight = g.getFontMetrics().getHeight();
+    	g.drawString(graphName, posX, posY);
+        
+    	//Draw frame and marks
+    	g.drawLine(posX, posY + textHeight, posX, posY + textHeight + HEIGHT);
+    	g.drawLine(posX, posY + textHeight + HEIGHT, posX + WIDTH, posY + textHeight + HEIGHT);
     }
+    
 }

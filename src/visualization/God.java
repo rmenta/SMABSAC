@@ -26,13 +26,13 @@ import model.*;
 public class God extends JPanel {
 	// Properties of the visualization
 	private final static int NUMBER_OF_AGENTS = 500;
-	private final static int WIDTH = 1720;
-	private final static int HEIGHT = 1080;
+	private final static int WIDTH = 1700;
+	private final static int HEIGHT = 1000;
 	private final static int PANEL_WIDTH = 200;
 	private final static int RADIUS = 5;
 	private final static boolean showInfo = true;
 	public final static double PROXIMITY = 0.95;
-	private final static int TILE_SIZE = 30;
+	private final static int TILE_SIZE = 20;
 	private final static int SLEEP_TIMER = 10;
 	private final static double MERCIFUL_GOD_FACTOR = 1.3; // 1 -> total of distribution = total need, < 1 -> dist < need
 
@@ -40,16 +40,21 @@ public class God extends JPanel {
 	private final static int COST_OF_LIFE = 1;
 	private final static int STARTING_CAPITAL = 500;
 
+	private LinkedList<Graph> graphs;
 	private LinkedList<Triple> agents;
 	private LinkedList<Edge> edges;
 	private int tickCounter = 0;
 
 	public God() {
-
-
-
+		
+		// Create lists
 		agents = new LinkedList<Triple>();
 		edges = new LinkedList<Edge>();
+		graphs = new LinkedList<Graph>();
+		
+		// Create graphs
+		Graph livingAgents = new Graph("Number of living agents", "Time", "Living Agents", WIDTH + 10, 100);
+		graphs.add(livingAgents);
 
 		// Create agents at random locations
 		Random r = new Random();
@@ -178,19 +183,17 @@ public class God extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
-		
 		// Draw background
 		g.setColor(Color.white);
-		g.fillRect(0, 0, WIDTH + PANEL_WIDTH, HEIGHT);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		// Draw dist in background
+		// Draw distribution in background
 		for(int i = 0; i < WIDTH; i+=TILE_SIZE){
 			for(int j = 0; j < HEIGHT; j+=TILE_SIZE){
 				g.setColor(new Color(255, (int)(255 * distFunction(i, j, tickCounter)), 255));
 				g.fillRect(i, j, TILE_SIZE, TILE_SIZE);
 			}
 		}
-
 
 		// Draw all the edges
 		g.setColor(Color.gray);
@@ -225,11 +228,19 @@ public class God extends JPanel {
 			}
 		}
 
+		// Clear side panel
+		g.setColor(Color.white);
+		g.fillRect(WIDTH, 0, WIDTH + PANEL_WIDTH, HEIGHT);
+		
 		// draw infos
+		g.setColor(Color.black);
 		g.drawString("Number of Agents: " + agents.size(), WIDTH + 10, 20);
 		g.drawString("Number of Edges:  " + edges.size(), WIDTH + 10, 40);
-		Graph g1 = new Graph(":)", "sdf", "ksjdjjfg", WIDTH, 300);
-		g1.paintComponent(g);
+		
+		// Draw graphs
+		for(Graph graph : graphs){
+			graph.paintComponent(g);
+		}
 	}
 
 	private double distFunction(int xPos, int yPos, int t){
