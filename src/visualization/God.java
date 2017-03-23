@@ -20,7 +20,8 @@ import model.*;
 
 /**
  * Doing all the dirty stuff and initialization
- *
+ *GEEILE SHIIIIT
+ * !!!!!
  * @author renato
  */
 public class God extends JPanel {
