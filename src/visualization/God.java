@@ -20,8 +20,7 @@ import model.*;
 
 /**
  * Doing all the dirty stuff and initialization
- *GEEILE SHIIIIT
- * !!!!!
+ *
  * @author renato
  */
 public class God extends JPanel {
@@ -46,6 +45,9 @@ public class God extends JPanel {
 	private int tickCounter = 0;
 
 	public God() {
+
+
+
 		agents = new LinkedList<Triple>();
 		edges = new LinkedList<Edge>();
 
@@ -126,7 +128,7 @@ public class God extends JPanel {
 		// System.out.println("SVG saved!");
 	}
 
-	public void rule() {
+	private void rule() {
 		
 		//Increase tick counter by one
 		tickCounter++;
@@ -226,6 +228,8 @@ public class God extends JPanel {
 		// draw infos
 		g.drawString("Number of Agents: " + agents.size(), WIDTH + 10, 20);
 		g.drawString("Number of Edges:  " + edges.size(), WIDTH + 10, 40);
+		Graph g1 = new Graph(":)", "sdf", "ksjdjjfg", WIDTH, 300);
+		g1.paintComponent(g);
 	}
 
 	private double distFunction(int xPos, int yPos, int t){
