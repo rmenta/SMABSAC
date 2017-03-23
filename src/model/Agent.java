@@ -8,32 +8,29 @@ public class Agent{
 	public LinkedList<Agent> tradingRequests;
 	public Agent lastPartner;
 	
+	public int id;
+	private static int idCounter = 0;
 	private int resource;
 	private final static int AMOUNT = 5;
 	
 	private double willingnessToTrade = 1;  // 0 to 1, 1 meaning accepting always a trade
-	private double goldDigFactor;		// 0 to 1, 1 meaning preferring money over sympathy
-	private int boundPoor;
-	private int boundRich;
+	private double goldDigFactor = 0;		// 0 to 1, 1 meaning preferring money over sympathy
 	
 	/**
 	 * 
 	 * @param r Amount of resource given to this Agent when created
 	 */
-	public Agent(int resource, int bR, int bP) {
+	public Agent(int resource) {
+		id = idCounter;
+		idCounter++;
+		
 		neighbours = new LinkedList<Neighbour>();
 		tradingRequests = new LinkedList<Agent>();
 		this.resource = resource;
-		boundPoor = bP;
-		boundRich = bR;
 	}
 	
 	
 	public void proposeTrade(){
-		if(resource > boundPoor){
-			return;
-		}
-		
 		Agent theChosenOne = null;
 		double maxValue = Double.NEGATIVE_INFINITY;
 		for(Neighbour n : neighbours){
@@ -45,7 +42,6 @@ public class Agent{
 		}
 		
 		if(theChosenOne != null){
-			System.out.println("A enlisted in B");
 			theChosenOne.enlist(this);
 		}
 		
@@ -54,25 +50,9 @@ public class Agent{
 	
 	public void trade(){
 		lastPartner = null;
-		if(tradingRequests.size() == 0){// || resource <= boundRich){
+		if(tradingRequests.size() == 0){
 			return;
 		}
-		
-		Agent theChosenOne = null;
-		Neighbour other = null;
-		Neighbour n = null;
-		
-		double maxValue = Double.NEGATIVE_INFINITY;
-		for(Agent a : tradingRequests){
-			n = getNeighbourFromAgent(a);
-			double value = -goldDigFactor * a.resource + (1 - goldDigFactor) * n.sympathy;
-			if(value > maxValue){
-				theChosenOne = a;
-				maxValue = value;
-				other = n;
-			}
-		}
-		
 		
 		// Check if trade happens
 		Random r =  new Random();
@@ -80,10 +60,32 @@ public class Agent{
 			return;
 		}
 		
+		Agent theChosenOne = null;
+		Neighbour other = null;
+		Neighbour n = null;
+		
+		// find trading partner
+		double maxValue = Double.NEGATIVE_INFINITY;
+		for(Agent a : tradingRequests){
+			n = getNeighbourFromAgent(a);
+			double value = -goldDigFactor * a.resource + (1 - goldDigFactor) * n.sympathy;
+			if(value > maxValue && resource > a.requestResource() + 2 * AMOUNT){
+				theChosenOne = a;
+				maxValue = value;
+				other = n;
+			}
+		}
+		
+		// abort if nobody found
+		if(theChosenOne == null){
+			tradingRequests.clear();
+			return;
+		}
+		
 		// actually trade stuff
 		theChosenOne.resource += AMOUNT;
 		resource -= AMOUNT;
-		System.out.println("A traded with B");
+		System.out.println("Agent " + id + " supported Agent " + theChosenOne.id);
 		
 		// Update sympathy
 		Neighbour me = theChosenOne.getNeighbourFromAgent(this);
@@ -117,8 +119,8 @@ public class Agent{
 		return resource;
 	}
 	
-	public void payBills(int b){
-		resource -= b;
+	public void getWhatYouDeserve(int b){
+		resource += b;
 	}
 	
 	public void die(){
