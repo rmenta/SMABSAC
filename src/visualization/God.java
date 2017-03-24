@@ -190,7 +190,7 @@ public class God extends JPanel {
 		// Draw distribution in background
 		for(int i = 0; i < WIDTH; i+=TILE_SIZE){
 			for(int j = 0; j < HEIGHT; j+=TILE_SIZE){
-				g.setColor(new Color(255, (int)(255 * distFunction(i, j, tickCounter)), 255));
+				g.setColor(new Color(255, (int)(255 * distFunction(i, j, tickCounter)), 0));
 				g.fillRect(i, j, TILE_SIZE, TILE_SIZE);
 			}
 		}
