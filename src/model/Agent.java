@@ -57,6 +57,7 @@ public class Agent{
 		// Check if trade happens
 		Random r =  new Random();
 		if(r.nextDouble() > willingnessToTrade){
+			tradingRequests.clear();
 			return;
 		}
 		

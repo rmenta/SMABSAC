@@ -26,20 +26,25 @@ import model.*;
 public class God extends JPanel {
 	// Properties of the visualization
 	private final static int NUMBER_OF_AGENTS = 500;
-	private final static int WIDTH = 1700;
+	private final static int WIDTH = 1500;
 	private final static int HEIGHT = 1000;
-	private final static int PANEL_WIDTH = 200;
+	private final static int PANEL_WIDTH = 400;
 	private final static int RADIUS = 5;
-	private final static boolean showInfo = true;
-	public final static double PROXIMITY = 0.95;
 	private final static int TILE_SIZE = 20;
 	private final static int SLEEP_TIMER = 10;
-	private final static double MERCIFUL_GOD_FACTOR = 1.3; // 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static boolean showInfo = true;
 
 	// Properties of the model
+	public final static double PROXIMITY = 0.95;
 	private final static int COST_OF_LIFE = 1;
-	private final static int STARTING_CAPITAL = 500;
+	private final static int STARTING_CAPITAL = 300;
+	private final static double MERCIFUL_GOD_FACTOR = 0.9; // 1 -> total of distribution = total need, < 1 -> dist < need
 
+	// Graphs
+	private Graph livingAgents;
+	private Graph totalWealth;
+	
+	// Bookkeeping
 	private LinkedList<Graph> graphs;
 	private LinkedList<Triple> agents;
 	private LinkedList<Edge> edges;
@@ -53,8 +58,10 @@ public class God extends JPanel {
 		graphs = new LinkedList<Graph>();
 		
 		// Create graphs
-		Graph livingAgents = new Graph("Number of living agents", "Time", "Living Agents", WIDTH + 10, 100);
+		livingAgents = new Graph("Number of living agents", "Time", "Living Agents", WIDTH + 10, 100);
+		totalWealth = new Graph("Wealth of all living agents", "Time", "Total Wealth", WIDTH + 10, 300);
 		graphs.add(livingAgents);
+		graphs.add(totalWealth);
 
 		// Create agents at random locations
 		Random r = new Random();
@@ -147,24 +154,28 @@ public class God extends JPanel {
 			agent.a.trade();
 		}
 
-		// life's a bitch
+		// calculate factor for distribution
 		double sumDistribution = 0;
 		for(Triple agent : agents){
 			sumDistribution += distFunction(agent.x, agent.y, tickCounter);
 		}
-		double factor = 1 / sumDistribution;
+		double factor = 1. / sumDistribution;
 		
+		// Distribute resources and mark dead agents
 		LinkedList<Triple> toRemove = new LinkedList<Triple>();
+		int totalWealthCounter = 0;
 		for (Triple agent : agents) {
-			int salary = (int)(factor * distFunction(agent.x, agent.y, tickCounter) * (COST_OF_LIFE * agents.size() * MERCIFUL_GOD_FACTOR));
+			int salary = (int)Math.round(factor * distFunction(agent.x, agent.y, tickCounter) * (COST_OF_LIFE * agents.size() * MERCIFUL_GOD_FACTOR));
 			agent.a.getWhatYouDeserve(salary - COST_OF_LIFE);
 			if (agent.a.requestResource() < 0) {
 				agent.a.die();
 				toRemove.add(agent);
+			} else{
+				totalWealthCounter += agent.a.requestResource();
 			}
 		}
 
-		// delete dead agents & edges
+		// delete dead agents and mark edges to be removed
 		LinkedList<Edge> edgesToRemove = new LinkedList<Edge>();
 		for (Triple a : toRemove) {
 			agents.remove(a);
@@ -175,10 +186,16 @@ public class God extends JPanel {
 			}
 		}
 
+		// delete edges
 		for (Edge e : edgesToRemove) {
 			edges.remove(e);
 		}
 
+		
+		// update graphs
+		livingAgents.addVal(tickCounter, agents.size());
+		totalWealth.addVal(tickCounter, totalWealthCounter);
+		
 	}
 
 	@Override
@@ -239,6 +256,7 @@ public class God extends JPanel {
 		
 		// Draw graphs
 		for(Graph graph : graphs){
+			g.setColor(Color.black);
 			graph.paintComponent(g);
 		}
 	}
@@ -246,7 +264,7 @@ public class God extends JPanel {
 	private double distFunction(int xPos, int yPos, int t){
 		double x = ((double)xPos / WIDTH) * 6;
 		double y = ((double)yPos / HEIGHT) * 6;
-		double aux = Math.sin(x + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/10);
+		double aux = Math.sin(x + (double)tickCounter/10) * Math.cos(y);// + (double)tickCounter/10);
 		return (aux + 1)/2;
 	}
 	
