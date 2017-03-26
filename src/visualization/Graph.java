@@ -79,7 +79,8 @@ public class Graph {
     	g.drawString(graphName, posX, posY);
     	g.drawString(yAxisLabel, posX, posY + 20);
     	g.drawString(xAxisLabel, plotPosX + plotWidth - xAxisLabel.length()*8, plotPosY + 20);
-    	g.drawString(Integer.toString(maxValue), plotPosX + 5, plotPosY - plotHeight + 10);
+    	g.drawString(Integer.toString(maxValue), plotPosX + 5, plotPosY - plotHeight + 5);
+    	g.drawString(Integer.toString(yCoords.getLast()), plotPosX + 5, plotPosY - (int)(plotHeight * scaleFactor * yCoords.getLast()) + 5);
     }
     
 }

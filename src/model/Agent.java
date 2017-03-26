@@ -14,7 +14,7 @@ public class Agent{
 	private final static int AMOUNT = 5;
 	
 	private double willingnessToTrade = 1;  // 0 to 1, 1 meaning accepting always a trade
-	private double goldDigFactor = 0;		// 0 to 1, 1 meaning preferring money over sympathy
+	private double goldDigFactor = 1;		// 0 to 1, 1 meaning preferring money over sympathy
 	
 	/**
 	 * 
