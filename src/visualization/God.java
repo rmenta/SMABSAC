@@ -38,7 +38,7 @@ public class God extends JPanel {
 	public final static double PROXIMITY = 0.95;
 	private final static int COST_OF_LIFE = 1;
 	private final static int STARTING_CAPITAL = 300;
-	private final static double MERCIFUL_GOD_FACTOR = 0.9; // 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static double MERCIFUL_GOD_FACTOR = 0.95; // 1 -> total of distribution = total need, < 1 -> dist < need
 
 	// Graphs
 	private Graph livingAgents;
