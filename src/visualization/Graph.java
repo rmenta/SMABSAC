@@ -14,6 +14,8 @@ public class Graph {
     private String xAxisLabel, yAxisLabel;
     private LinkedList<Integer> xCoords, yCoords;
     private final static int WIDTH = 360, HEIGHT = 150;
+    private int limitValues = Integer.MAX_VALUE;
+    private boolean showTicksX = false;
     
     // Position stuff
     private int posX, posY;
@@ -38,30 +40,51 @@ public class Graph {
         plotWidth = WIDTH - 20;
         plotHeight = HEIGHT - 20;
     }
+    
+    // Additional constructor for limits
+    public Graph(String graphName, String xAxisLabel, String yAxisLabel, int posX, int posY, int limit) {
+    	this(graphName, xAxisLabel, yAxisLabel, posX, posY);
+    	limitValues = limit;
+    }
 
     public void addVal(int x, int y){
     	// Add new values
         xCoords.add(x);
         yCoords.add(y);
         
-        // Check max value
-        if(y > maxValue){
-        	maxValue = y;
+        // Remove values if too many
+        while(xCoords.size() > limitValues){ 	
+        	xCoords.removeFirst();
+        	yCoords.removeFirst();
         }
+        
+        // Adjust max value
+        maxValue = computeMaxValue();
     }
 
     public void updateValues(LinkedList<Integer> xCoords, LinkedList<Integer> yCoords){
         this.xCoords = xCoords;
         this.yCoords = yCoords;
-
+        
+        // Adjust max value¨
+        maxValue = computeMaxValue();
+    }
+    
+    private int computeMaxValue(){
+    	int maxVal = yCoords.getFirst();
+    	for(Integer val : yCoords){
+        	if(val > maxVal){
+        		maxVal = val;
+        	}
+        }
+    	return maxVal;
+    }
+    
+    public void showTicks(){
+    	showTicksX = true;
     }
     
     public void paintComponent(Graphics g){
-    	//Draw frame and marks, plot coordinates start at bottom left corner (not upper left)
-    	g.setColor(Color.black);
-    	g.drawLine(plotPosX, plotPosY - plotHeight, plotPosX, plotPosY);
-    	g.drawLine(plotPosX, plotPosY, plotPosX + plotWidth, plotPosY);
-    	
     	// Calculate needed values
     	Iterator<Integer> yIterator = yCoords.iterator();
     	double colWidth = (double)plotWidth / xCoords.size();
@@ -74,13 +97,25 @@ public class Graph {
     		g.fillRect(1 + (int)Math.ceil(plotPosX + i * colWidth), plotPosY - colHeight, (int)Math.ceil(colWidth), colHeight);
     	}
     	
+    	//Draw frame and marks, plot coordinates start at bottom left corner (not upper left)
+    	g.setColor(Color.black);
+    	g.drawLine(plotPosX, plotPosY - plotHeight, plotPosX, plotPosY);
+    	g.drawLine(plotPosX, plotPosY, plotPosX + plotWidth, plotPosY);
+    	if(showTicksX){
+    		for(int i = 1; i < xCoords.size(); i++){ 
+    			g.drawRect(1 + (int)Math.ceil(plotPosX + i * colWidth), plotPosY, 1, 5);
+    		}
+    	}
+    	
     	// Draw infos of the graph
+    	// TODO: clean that filthy shit up
     	g.setColor(Color.black);
     	g.drawString(graphName, posX, posY);
     	g.drawString(yAxisLabel, posX, posY + 20);
-    	g.drawString(xAxisLabel, plotPosX + plotWidth - xAxisLabel.length()*8, plotPosY + 20);
+    	g.drawString(xAxisLabel, plotPosX + plotWidth/2 - xAxisLabel.length()*3, plotPosY + 20);
     	g.drawString(Integer.toString(maxValue), plotPosX + 5, plotPosY - plotHeight + 5);
     	g.drawString(Integer.toString(yCoords.getLast()), plotPosX + 5, plotPosY - (int)(plotHeight * scaleFactor * yCoords.getLast()) + 5);
+    	g.drawString(Integer.toString(xCoords.getFirst()), plotPosX, plotPosY + 15);
+    	g.drawString(Integer.toString(xCoords.getLast()), plotPosX + plotWidth - Integer.toString(xCoords.getLast()).length()*8, plotPosY + 15);
     }
-    
 }

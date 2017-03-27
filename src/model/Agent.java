@@ -13,20 +13,22 @@ public class Agent{
 	private int resource;
 	private final static int AMOUNT = 5;
 	
-	private double willingnessToTrade = 1;  // 0 to 1, 1 meaning accepting always a trade
-	private double goldDigFactor = 1;		// 0 to 1, 1 meaning preferring money over sympathy
+	private double willingnessToTrade;  // 0 to 1, 1 meaning accepting always a trade
+	private double goldDigFactor;		// 0 to 1, 1 meaning preferring money over sympathy
 	
 	/**
 	 * 
 	 * @param r Amount of resource given to this Agent when created
 	 */
-	public Agent(int resource) {
+	public Agent(int resource, double wTT, double gDF) {
 		id = idCounter;
 		idCounter++;
 		
 		neighbours = new LinkedList<Neighbour>();
 		tradingRequests = new LinkedList<Agent>();
 		this.resource = resource;
+		this.willingnessToTrade = wTT;
+		this.goldDigFactor = gDF;
 	}
 	
 	
@@ -123,6 +125,7 @@ public class Agent{
 	public void getWhatYouDeserve(int b){
 		resource += b;
 	}
+	
 	
 	public void die(){
 		for(Neighbour n : neighbours){
