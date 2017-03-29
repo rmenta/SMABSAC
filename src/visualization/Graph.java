@@ -66,7 +66,7 @@ public class Graph {
         this.xCoords = xCoords;
         this.yCoords = yCoords;
         
-        // Adjust max value¨
+        // Adjust max value
         maxValue = computeMaxValue();
     }
     

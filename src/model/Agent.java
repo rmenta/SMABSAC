@@ -3,15 +3,18 @@ package model;
 import java.util.LinkedList;
 import java.util.Random;
 
+
+
 public class Agent{
 	public LinkedList<Neighbour> neighbours;
 	public LinkedList<Agent> tradingRequests;
 	public Agent lastPartner;
-	
 	public int id;
 	private static int idCounter = 0;
 	private int resource;
 	private final static int AMOUNT = 5;
+
+	public int posX, posY;
 	
 	private double willingnessToTrade;  // 0 to 1, 1 meaning accepting always a trade
 	private double goldDigFactor;		// 0 to 1, 1 meaning preferring money over sympathy
@@ -20,10 +23,13 @@ public class Agent{
 	 * 
 	 * @param r Amount of resource given to this Agent when created
 	 */
-	public Agent(int resource, double wTT, double gDF) {
+	public Agent(int resource, double wTT, double gDF, int xPos, int yPos) {
 		id = idCounter;
 		idCounter++;
-		
+
+		this.posX = xPos;
+		this.posY = yPos;
+
 		neighbours = new LinkedList<Neighbour>();
 		tradingRequests = new LinkedList<Agent>();
 		this.resource = resource;
@@ -42,6 +48,7 @@ public class Agent{
 				maxValue = value;
 			}
 		}
+
 		
 		if(theChosenOne != null){
 			theChosenOne.enlist(this);
@@ -89,7 +96,16 @@ public class Agent{
 		theChosenOne.resource += AMOUNT;
 		resource -= AMOUNT;
 		System.out.println("Agent " + id + " supported Agent " + theChosenOne.id);
-		
+
+
+		// move agent in direction of chosenOne
+		double diffX = (double) theChosenOne.posX - this.posX;
+		double diffY = (double) theChosenOne.posY - this.posY;
+		double distanceBetweenAgents = Math.sqrt((diffX*diffX) + (diffY*diffY));
+		theChosenOne.posX = theChosenOne.posX + (int)((((double)this.posX - (double)theChosenOne.posX) / distanceBetweenAgents) * 5);
+		theChosenOne.posY = theChosenOne.posY + (int)((((double)this.posY - (double)theChosenOne.posY) / distanceBetweenAgents) * 5);
+
+
 		// Update sympathy
 		Neighbour me = theChosenOne.getNeighbourFromAgent(this);
 		me.sympathy += 2;
