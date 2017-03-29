@@ -98,7 +98,7 @@ public class Agent{
 		System.out.println("Agent " + id + " supported Agent " + theChosenOne.id);
 
 
-		// move agent in direction of chosenOne
+		// move agent in direction of chosenONe
 		double diffX = (double) theChosenOne.posX - this.posX;
 		double diffY = (double) theChosenOne.posY - this.posY;
 		double distanceBetweenAgents = Math.sqrt((diffX*diffX) + (diffY*diffY));

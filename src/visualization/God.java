@@ -293,7 +293,7 @@ public class God extends JPanel {
         g.setColor(Color.white);
         g.fillRect(WIDTH, 0, WIDTH + PANEL_WIDTH, HEIGHT);
 
-        // draw infos
+        // draw informations
         g.setColor(Color.black);
         g.drawString("Number of Agents: " + agents.size(), WIDTH + 10, 20);
         g.drawString("Number of Edges:  " + edges.size(), WIDTH + 10, 40);
@@ -309,8 +309,8 @@ public class God extends JPanel {
         double x = ((double) xPos / WIDTH) * 6;
         double y = ((double) yPos / HEIGHT) * 6;
         //double aux = Math.sin(x * Math.cos(x)+(double)tickCounter/10.) * Math.cos(y * Math.sin(x));
-        double aux = Math.sin(x + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/10);
-        //double aux = Math.sin(x) * Math.cos(y);
+        //double aux = Math.sin(x + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/10);
+        double aux = Math.sin(x) * Math.cos(y);
         return (aux + 1) / 2;
     }
 
