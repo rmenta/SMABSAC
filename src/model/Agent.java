@@ -99,6 +99,7 @@ public class Agent{
 
 
 		// move agent in direction of chosenOne
+		//tetetetetet
 		double diffX = (double) theChosenOne.posX - this.posX;
 		double diffY = (double) theChosenOne.posY - this.posY;
 		double distanceBetweenAgents = Math.sqrt((diffX*diffX) + (diffY*diffY));
