@@ -28,12 +28,12 @@ public class God extends JPanel {
 	// Properties of the visualization
 	private final static int NUMBER_OF_AGENTS = 500;
 	private final static int WIDTH = 1500;
-	private final static int HEIGHT = 1050;
+	private final static int HEIGHT = 1000;
 	private final static int PANEL_WIDTH = 400;
 	private final static int RADIUS = 5;
 	private final static int TILE_SIZE = 20;
-	private final static int SLEEP_TIMER = 30;
-	private final static boolean showInfo = true;
+	private final static int SLEEP_TIMER = 0;
+	private final static boolean showInfo = false;
 
 	// Properties of the model
 	public final static double PROXIMITY = 0.95;
@@ -41,9 +41,9 @@ public class God extends JPanel {
 	private final static int STARTING_CAPITAL = 255;
 	
 	// Interesting factors
-	private final static double MERCIFUL_GOD_FACTOR = 0.7;	// 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static double MERCIFUL_GOD_FACTOR = 0.8;	// 1 -> total of distribution = total need, < 1 -> dist < need
 	private final static double WILLINGNESS_TO_TRADE = 1;	// chance that a trade even takes place at all (independent of rest)
-	private final static double GOLD_DIG_FACTOR = 1;		// 0: Only trade with people you like, 1: Only trade with poor people
+	private final static double GOLD_DIG_FACTOR = 0.0;		// 0: Only trade with people you like, 1: Only trade with poor people
 
 	// Graphs
 	private Chart livingAgents;
@@ -56,6 +56,9 @@ public class God extends JPanel {
 	private LinkedList<Agent> agents;
 	private LinkedList<Edge> edges;
 	private int tickCounter = 0;
+	private long fpsTime = System.currentTimeMillis();
+	private long fpsCounter = 0;
+	private long fps = 0;
 
 	private God() {
 
@@ -148,7 +151,7 @@ public class God extends JPanel {
 
 		while (true) {
 			oli.rule();
-			oli.repaint();
+			oli.paintImmediately(0, 0, WIDTH + PANEL_WIDTH, HEIGHT);
 			try {
 				Thread.sleep(SLEEP_TIMER);
 			} catch (InterruptedException e) {
@@ -163,6 +166,7 @@ public class God extends JPanel {
 		
 		//Increase tick counter by one
 		tickCounter++;
+		fpsCounter++;
 		
 		// Let agents do their stuff
 		for (Agent agent : agents) {
@@ -286,7 +290,6 @@ public class God extends JPanel {
 		}
 
 		// Draw all the agents
-		//TODO: resolv ConcurrentModificationException, this iteration seems to be the root cause
 		g.setColor(Color.black);
 		for (Agent a : agents) {
 			g.setColor(new Color(0, Math.min(255, a.requestResource()), 0));
@@ -302,9 +305,15 @@ public class God extends JPanel {
 		g.fillRect(WIDTH, 0, WIDTH + PANEL_WIDTH, HEIGHT);
 		
 		// draw infos
+		if(System.currentTimeMillis() - fpsTime > 1000){
+			fps = fpsCounter;
+			fpsTime = System.currentTimeMillis();
+			fpsCounter = 0;
+		}
 		g.setColor(Color.black);
 		g.drawString("Number of Agents: " + agents.size(), WIDTH + 10, 20);
 		g.drawString("Number of Edges:  " + edges.size(), WIDTH + 10, 40);
+		g.drawString("TPS: " + fps, WIDTH + PANEL_WIDTH - 100, 20);
 		
 		// Draw graphs
 		chartContainer.paintComponent(g);
@@ -313,9 +322,9 @@ public class God extends JPanel {
 	private double distFunction(int xPos, int yPos, int t){
 		double x = ((double)xPos / WIDTH) * 6;
 		double y = ((double)yPos / HEIGHT) * 6;
-		//double aux = Math.sin(x*Math.cos(x) + (double)tickCounter/10.) * Math.cos(y * Math.sin(x) );
+		double aux = Math.sin(x*Math.cos(x) + (double)tickCounter/10.) * Math.cos(y * Math.sin(x) );
 		//double aux = Math.sin(x + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/10);
-		double aux = Math.sin(x) * Math.cos(y);
+		//double aux = Math.sin(x) * Math.cos(y);
 		return (aux + 1)/2;
 	}
 	

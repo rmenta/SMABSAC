@@ -31,7 +31,7 @@ public class XYChart extends Chart{
 		}
 		
 		// Draw line with current value
-		g.setColor(Color.cyan);
+		g.setColor(Color.blue);
 		g.drawLine(posX, lastPosY, posX + width, lastPosY);
 	}
 
