@@ -7,7 +7,9 @@ import java.util.LinkedList;
 
 /**
  * Created by God on 23.03.2017.
+ * Graph makes Graphs :)
  */
+
 public class Graph {
 	// General properties of the graph
     private String graphName;

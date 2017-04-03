@@ -14,8 +14,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import model.*;
 
@@ -36,30 +35,30 @@ public class God extends JPanel {
     private final static boolean showInfo = true;
 
     // Properties of the model
-    public final static double PROXIMITY = 0.97;
+    private final static double PROXIMITY = 0.97;
     private final static int COST_OF_LIFE = 1;
-    private final static int STARTING_CAPITAL = 400;
+    private final static int STARTING_CAPITAL = 100;
 
     // Interesting factors
-    private final static double MERCIFUL_GOD_FACTOR = 1.3;    // 1 -> total of distribution = total need, < 1 -> dist < need
+    private final static double MERCIFUL_GOD_FACTOR = 0.7;    // 1 -> total of distribution = total need, < 1 -> dist < need
     private final static double WILLINGNESS_TO_TRADE = 1;    // chance that a trade even takes place at all (independent of rest)
     private final static double GOLD_DIG_FACTOR = 1;        // 0: Only trade with people you like, 1: Only trade with poor people
 
-    // Graphs
+    /* Graphs */
     private Graph livingAgents;
     private Graph totalWealth;
     private Graph wealthNeighbours;
 
     // Bookkeeping
     private LinkedList<Graph> graphs;
-    private LinkedList<Triple> agents;
+    private LinkedList<Agent> agents;
     private LinkedList<Edge> edges;
     private int tickCounter = 0;
 
-    public God() {
+    private God() {
 
         // Create lists
-        agents = new LinkedList<Triple>();
+        agents = new LinkedList<Agent>();
         edges = new LinkedList<Edge>();
         graphs = new LinkedList<Graph>();
 
@@ -87,15 +86,15 @@ public class God extends JPanel {
 
             // Check if space is not yet occupied
             boolean tooClose = false;
-            for (Triple other : agents) {
-                if (getDistance(x, y, other.x, other.y) < 3 * RADIUS) {
+            for (Agent other : agents) {
+                if (getDistance(x, y, other.posX, other.posY) < 3 * RADIUS) {
                     tooClose = true;
                 }
             }
 
             // add newly created agent to list
             if (!tooClose) {
-                agents.add(new Triple(a, x, y));
+                agents.add(a);
 
             }
         }
@@ -106,18 +105,18 @@ public class God extends JPanel {
 
     }
 
-    public void createEdges() {
+    private void createEdges() {
         Random r = new Random();
         double maxLength = getDistance(0, 0, WIDTH, HEIGHT);
-        LinkedList<Triple> others = (LinkedList<Triple>) agents.clone();
-        for (Triple me : agents) {
-            for (Triple other : others) {
+        LinkedList<Agent> others = (LinkedList<Agent>) agents.clone();
+        for (Agent me : agents) {
+            for (Agent other : others) {
                 // don't make connections to itself
                 if (me == other) {
                     continue;
                 }
                 // the higher the ratio the closer two agents are
-                double distance = getDistance(me.a.posX, me.a.posY, other.a.posX, other.a.posY);
+                double distance = getDistance(me.posX, me.posY, other.posX, other.posY);
                 double ratio = Math.pow(1 - distance / maxLength, 1. / (1 - PROXIMITY)); // bit
                 // of
                 // a
@@ -125,8 +124,8 @@ public class God extends JPanel {
                 // function
                 if (ratio > r.nextDouble()) {
                     edges.add(new Edge(me, other));
-                    me.a.neighbours.add(new Neighbour(other.a, 0));
-                    other.a.neighbours.add(new Neighbour(me.a, 0));
+                    me.neighbours.add(new Neighbour(other, 0));
+                    other.neighbours.add(new Neighbour(me, 0));
                 }
             }
 
@@ -141,7 +140,7 @@ public class God extends JPanel {
         JFrame frame = new JFrame("[SMABSAC]");
         frame.add(oli);
         frame.setSize(WIDTH + PANEL_WIDTH, HEIGHT);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
         while (true) {
@@ -162,39 +161,39 @@ public class God extends JPanel {
         tickCounter++;
 
         // Let agents do their stuff
-        for (Triple agent : agents) {
-            agent.a.proposeTrade();
+        for (Agent agent : agents) {
+            agent.proposeTrade();
         }
 
-        for (Triple agent : agents) {
-            agent.a.trade();
+        for (Agent agent : agents) {
+            agent.trade();
         }
 
         // calculate factor for distribution
         double sumDistribution = 0;
-        for (Triple agent : agents) {
-            sumDistribution += distFunction(agent.a.posX, agent.a.posY, tickCounter);
+        for (Agent agent : agents) {
+            sumDistribution += distFunction(agent.posX, agent.posY, tickCounter);
         }
-        double factor = 1. / (agents.size());//1. / sumDistribution;
+        double factor = 1. / (sumDistribution);//1. / sumDistribution;
 
         // Distribute resources and mark dead agents
-        LinkedList<Triple> toRemove = new LinkedList<Triple>();
+        LinkedList<Agent> toRemove = new LinkedList<>();
         int totalWealthCounter = 0;
-        for (Triple agent : agents) {
-            int salary = (int) (Math.round(factor * distFunction(agent.a.posX, agent.a.posY, tickCounter) * (((double) COST_OF_LIFE * (double) agents.size()) * MERCIFUL_GOD_FACTOR)));
-            agent.a.getWhatYouDeserve(salary - COST_OF_LIFE);
-            if (agent.a.requestResource() < 0) {
-                agent.a.die();
+        for (Agent agent : agents) {
+            int salary = (int) (Math.round(factor * distFunction(agent.posX, agent.posY, tickCounter) * (((double) COST_OF_LIFE * (double) agents.size()) * MERCIFUL_GOD_FACTOR)));
+            agent.getWhatYouDeserve(salary - COST_OF_LIFE);
+            if (agent.requestResource() < 0) {
+                agent.die();
                 toRemove.add(agent);
             } else {
-                totalWealthCounter += agent.a.requestResource();
+                totalWealthCounter += agent.requestResource();
             }
         }
 
         // delete dead agents and mark edges to be removed
         LinkedList<Edge> edgesToRemove = new LinkedList<Edge>();
-        for (Triple a : toRemove) {
-            System.out.println("Agent " + a.a.id + " has passed away.");
+        for (Agent a : toRemove) {
+            System.out.println("Agent " + a.id + " has passed away.");
             agents.remove(a);
             for (Edge e : edges) {
                 if (e.a1 == a || e.a2 == a) {
@@ -204,27 +203,26 @@ public class God extends JPanel {
         }
 
         // delete edges
-        for (Edge e : edgesToRemove) {
-            edges.remove(e);
-        }
+        edges.removeAll(edgesToRemove);
+
 
         // copmute stuff for graphs
         int maxCountNeighbours = 0;
-        for (Triple a : agents) {
-            if (a.a.neighbours.size() > maxCountNeighbours) {
-                maxCountNeighbours = a.a.neighbours.size();
+        for (Agent a : agents) {
+            if (a.neighbours.size() > maxCountNeighbours) {
+                maxCountNeighbours = a.neighbours.size();
             }
         }
         int[] neighboursCount = new int[maxCountNeighbours + 1];
         Integer[] neighboursAxisArray = new Integer[maxCountNeighbours + 1];
         Integer[] wealthForGraphArray = new Integer[maxCountNeighbours + 1];
         for (int i = 0; i < maxCountNeighbours + 1; i++) {
-            neighboursAxisArray[i] = new Integer(i);
-            wealthForGraphArray[i] = new Integer(0);
+            neighboursAxisArray[i] = i;
+            wealthForGraphArray[i] = 0;
         }
-        for (Triple a : agents) {
-            wealthForGraphArray[a.a.neighbours.size()] += a.a.requestResource();
-            neighboursCount[a.a.neighbours.size()]++;
+        for (Agent a : agents) {
+            wealthForGraphArray[a.neighbours.size()] += a.requestResource();
+            neighboursCount[a.neighbours.size()]++;
         }
         for (int i = 0; i < maxCountNeighbours + 1; i++) {
             if (neighboursCount[i] > 0) {
@@ -258,19 +256,19 @@ public class God extends JPanel {
         // Draw all the edges
         g.setColor(Color.gray);
         for (Edge e : edges) {
-            g.drawLine(e.a1.a.posX, e.a1.a.posY, e.a2.a.posX, e.a2.a.posY);
+            g.drawLine(e.a1.posX, e.a1.posY, e.a2.posX, e.a2.posY);
         }
 
         // Draw last transactions
         Graphics2D g2 = (Graphics2D) g;
-        for (Triple a : agents) {
-            Agent p = a.a.lastPartner;
+        for (Agent a : agents) {
+            Agent p = a.lastPartner;
             if (p != null) {
-                for (Triple t : agents) {
-                    if (t.a == p) {
+                for (Agent t : agents) {
+                    if (t == p) {
                         g2.setStroke(new BasicStroke(2));
                         g2.setColor(Color.black);
-                        g2.drawLine(a.a.posX, a.a.posY, t.a.posX, t.a.posY);
+                        g2.drawLine(a.posX, a.posY, t.posX, t.posY);
                         break;
                     }
                 }
@@ -278,14 +276,14 @@ public class God extends JPanel {
         }
 
         // Draw all the agents
-        //TODO: resolv ConcurrentModificationException, this iteration seems to be the root cause
+        //TODO: resolve ConcurrentModificationException, this iteration seems to be the root cause
         g.setColor(Color.black);
-        for (Triple a : agents) {
-            g.setColor(new Color(0, Math.min(255, a.a.requestResource()), 0));
-            g.fillOval(a.a.posX - RADIUS, a.a.posY - RADIUS, 2 * RADIUS, 2 * RADIUS);
+        for (Agent a : agents) {
+            g.setColor(new Color(0, Math.min(255, a.requestResource()), 0));
+            g.fillOval(a.posX - RADIUS, a.posY - RADIUS, 2 * RADIUS, 2 * RADIUS);
             g.setColor(Color.black);
             if (showInfo) {
-                g.drawString("   ID: " + a.a.id + ", " + a.a.requestResource(), a.a.posX, a.a.posY);
+                g.drawString("   ID: " + a.id + ", " + a.requestResource(), a.posX, a.posY);
             }
         }
 

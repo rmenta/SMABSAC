@@ -104,6 +104,7 @@ public class Agent{
 		double diffX = (double) theChosenOne.posX - this.posX;
 		double diffY = (double) theChosenOne.posY - this.posY;
 		double distanceBetweenAgents = Math.sqrt((diffX*diffX) + (diffY*diffY));
+
 		theChosenOne.posX = theChosenOne.posX + (int)((((double)this.posX - (double)theChosenOne.posX) / distanceBetweenAgents) * 5);
 		theChosenOne.posY = theChosenOne.posY + (int)((((double)this.posY - (double)theChosenOne.posY) / distanceBetweenAgents) * 5);
 
