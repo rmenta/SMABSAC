@@ -32,7 +32,7 @@ public class God extends JPanel {
 	private final static int PANEL_WIDTH = 400;
 	private final static int RADIUS = 5;
 	private final static int TILE_SIZE = 20;
-	private final static int SLEEP_TIMER = 10;
+	private final static int SLEEP_TIMER = 30;
 	private final static boolean showInfo = true;
 
 	// Properties of the model
@@ -41,7 +41,7 @@ public class God extends JPanel {
 	private final static int STARTING_CAPITAL = 255;
 	
 	// Interesting factors
-	private final static double MERCIFUL_GOD_FACTOR = 0.9;	// 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static double MERCIFUL_GOD_FACTOR = 0.7;	// 1 -> total of distribution = total need, < 1 -> dist < need
 	private final static double WILLINGNESS_TO_TRADE = 1;	// chance that a trade even takes place at all (independent of rest)
 	private final static double GOLD_DIG_FACTOR = 1;		// 0: Only trade with people you like, 1: Only trade with poor people
 
@@ -141,14 +141,14 @@ public class God extends JPanel {
         God oli = new God();
 
 		JFrame frame = new JFrame("[SMABSAC]");
-		frame.add(renato);
+		frame.add(oli);
 		frame.setSize(WIDTH + PANEL_WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
 		while (true) {
-			renato.rule();
-			renato.repaint();
+			oli.rule();
+			oli.repaint();
 			try {
 				Thread.sleep(SLEEP_TIMER);
 			} catch (InterruptedException e) {
@@ -156,9 +156,7 @@ public class God extends JPanel {
 			}
 		}
 
-		// make svg-file
-		// renato.createSVG("svgGraph.html");
-		// System.out.println("SVG saved!");
+
 	}
 
 	private void rule() {
@@ -167,39 +165,39 @@ public class God extends JPanel {
 		tickCounter++;
 		
 		// Let agents do their stuff
-		for (Triple agent : agents) {
-			agent.a.proposeTrade();
+		for (Agent agent : agents) {
+			agent.proposeTrade();
 		}
 
-		for (Triple agent : agents) {
-			agent.a.trade();
+		for (Agent agent : agents) {
+			agent.trade();
 		}
 
 		// calculate factor for distribution
 		double sumDistribution = 0;
-		for(Triple agent : agents){
-			sumDistribution += distFunction(agent.x, agent.y, tickCounter);
+		for(Agent agent : agents){
+			sumDistribution += distFunction(agent.posX, agent.posY, tickCounter);
 		}
 		double factor = 1. / sumDistribution;
 		
 		// Distribute resources and mark dead agents
-		LinkedList<Triple> toRemove = new LinkedList<Triple>();
+		LinkedList<Agent> toRemove = new LinkedList<>();
 		int totalWealthCounter = 0;
-		for (Triple agent : agents) {
-			int salary = (int)Math.round(factor * distFunction(agent.x, agent.y, tickCounter) * (COST_OF_LIFE * agents.size() * MERCIFUL_GOD_FACTOR));
-			agent.a.getWhatYouDeserve(salary - COST_OF_LIFE);
-			if (agent.a.requestResource() < 0) {
-				agent.a.die();
+		for (Agent agent : agents) {
+			int salary = (int)Math.round(factor * distFunction(agent.posX, agent.posY, tickCounter) * (COST_OF_LIFE * agents.size() * MERCIFUL_GOD_FACTOR));
+			agent.getWhatYouDeserve(salary - COST_OF_LIFE);
+			if (agent.requestResource() < 0) {
+				agent.die();
 				toRemove.add(agent);
 			} else{
-				totalWealthCounter += agent.a.requestResource();
+				totalWealthCounter += agent.requestResource();
 			}
 		}
 
 		// delete dead agents and mark edges to be removed
 		LinkedList<Edge> edgesToRemove = new LinkedList<Edge>();
-		for (Triple a : toRemove) {
-			System.out.println("Agent " + a.a.id + " has passed away.");
+		for (Agent a : toRemove) {
+			System.out.println("Agent " + a.id + " has passed away.");
 			agents.remove(a);
 			for (Edge e : edges) {
 				if (e.a1 == a || e.a2 == a) {
@@ -209,9 +207,7 @@ public class God extends JPanel {
 		}
 
 		// delete edges
-		for (Edge e : edgesToRemove) {
-			edges.remove(e);
-		}
+        edges.removeAll(edgesToRemove);
 		
 		// copmute stuff for graphs
 		int maxCountNeighbours = 0;
@@ -225,9 +221,9 @@ public class God extends JPanel {
 		Integer[] wealthForGraphArray = new Integer[maxCountNeighbours + 1];
 		Integer[] neighboursForGraphArray = new Integer[maxCountNeighbours + 1];
 		for(int i = 0; i < maxCountNeighbours + 1; i++){
-			neighboursAxisArray[i] = new Integer(i);
-			wealthForGraphArray[i]= new Integer(0);
-			neighboursForGraphArray[i]= new Integer(0);
+			neighboursAxisArray[i] = i;
+			wealthForGraphArray[i]= 0;
+			neighboursForGraphArray[i]= 0;
 		}
 		for(Agent a : agents){
 			wealthForGraphArray[a.neighbours.size()] += a.requestResource();
@@ -240,9 +236,9 @@ public class God extends JPanel {
 			}
 		}
 
-		LinkedList<Integer> neighboursAxis = new LinkedList<Integer>(Arrays.asList(neighboursAxisArray));
-		LinkedList<Integer> wealthForGraph = new LinkedList<Integer>(Arrays.asList(wealthForGraphArray));
-		LinkedList<Integer> neighboursForGraph = new LinkedList<Integer>(Arrays.asList(neighboursForGraphArray));
+		LinkedList<Integer> neighboursAxis = new LinkedList<>(Arrays.asList(neighboursAxisArray));
+		LinkedList<Integer> wealthForGraph = new LinkedList<>(Arrays.asList(wealthForGraphArray));
+		LinkedList<Integer> neighboursForGraph = new LinkedList<>(Arrays.asList(neighboursForGraphArray));
 		
 
 		
@@ -270,19 +266,19 @@ public class God extends JPanel {
 		// Draw all the edges
 		g.setColor(Color.gray);
 		for (Edge e : edges) {
-			g.drawLine(e.a1.x, e.a1.y, e.a2.x, e.a2.y);
+			g.drawLine(e.a1.posX, e.a1.posY, e.a2.posX, e.a2.posY);
 		}
 
 		// Draw last transactions
 		Graphics2D g2 = (Graphics2D) g;
-		for (Triple a : agents) {
-			Agent p = a.a.lastPartner;
+		for (Agent a : agents) {
+			Agent p = a.lastPartner;
 			if (p != null) {
-				for (Triple t : agents) {
-					if (t.a == p) {
+				for (Agent t : agents) {
+					if (t == p) {
 						g2.setStroke(new BasicStroke(2));
 						g2.setColor(Color.black);
-						g2.drawLine(a.x, a.y, t.x, t.y);
+						g2.drawLine(a.posX, a.posY, t.posX, t.posY);
 						break;
 					}
 				}
@@ -292,12 +288,12 @@ public class God extends JPanel {
 		// Draw all the agents
 		//TODO: resolv ConcurrentModificationException, this iteration seems to be the root cause
 		g.setColor(Color.black);
-		for (Triple a : agents) {
-			g.setColor(new Color(0, Math.min(255, a.a.requestResource()), 0));
-			g.fillOval(a.x - RADIUS, a.y - RADIUS, 2 * RADIUS, 2 * RADIUS);
+		for (Agent a : agents) {
+			g.setColor(new Color(0, Math.min(255, a.requestResource()), 0));
+			g.fillOval(a.posX - RADIUS, a.posY - RADIUS, 2 * RADIUS, 2 * RADIUS);
 			g.setColor(Color.black);
 			if(showInfo){
-				g.drawString("   ID: " + a.a.id + ", " + a.a.requestResource(), a.x, a.y);
+				g.drawString("   ID: " + a.id + ", " + a.requestResource(), a.posX, a.posY);
 			}
 		}
 
