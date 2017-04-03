@@ -41,17 +41,18 @@ public class God extends JPanel {
 	private final static int STARTING_CAPITAL = 255;
 	
 	// Interesting factors
-	private final static double MERCIFUL_GOD_FACTOR = 0.9;	// 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static double MERCIFUL_GOD_FACTOR = 0.8;	// 1 -> total of distribution = total need, < 1 -> dist < need
 	private final static double WILLINGNESS_TO_TRADE = 1;	// chance that a trade even takes place at all (independent of rest)
-	private final static double GOLD_DIG_FACTOR = 1;		// 0: Only trade with people you like, 1: Only trade with poor people
+	private final static double GOLD_DIG_FACTOR = 0.7;		// 0: Only trade with people you like, 1: Only trade with poor people
 
 	// Graphs
-	private Graph livingAgents;
-	private Graph totalWealth;
-	private Graph wealthNeighbours;
+	private Chart livingAgents;
+	private Chart totalWealth;
+	private Chart wealthNeighbours;
+	private Chart neighboursPerAgent;
 	
 	// Bookkeeping
-	private LinkedList<Graph> graphs;
+	private ChartContainer chartContainer = new ChartContainer(WIDTH + 10, 100, PANEL_WIDTH - 80, 120);
 	private LinkedList<Triple> agents;
 	private LinkedList<Edge> edges;
 	private int tickCounter = 0;
@@ -61,18 +62,19 @@ public class God extends JPanel {
 		// Create lists
 		agents = new LinkedList<Triple>();
 		edges = new LinkedList<Edge>();
-		graphs = new LinkedList<Graph>();
 		
 		// Create graphs
-		livingAgents = new Graph("Number of living agents", "Time", "Living Agents", WIDTH + 10, 100);
-		totalWealth = new Graph("Wealth of all living agents", "Time", "Total Wealth", WIDTH + 10, 350, 500);
-		wealthNeighbours = new Graph("Wealth compared to amount of neighbours", "Neighbours", "Wealth", WIDTH + 10, 600);
-		wealthNeighbours.showTicks();
+		livingAgents = new XYChart("Number of living agents", "Time", "Living Agents");
+		totalWealth = new XYChart("Wealth of all living agents", "Time", "Total Wealth");
+		wealthNeighbours = new Histogram("Wealth compared to amount of neighbours", "Neighbours", "Wealth");
+		neighboursPerAgent = new Histogram("Neighbours per Agent", "Neighbours", "Agents");
+		totalWealth.setMaxSize(0);
 		
 		// Add graphs to list
-		graphs.add(livingAgents);
-		graphs.add(totalWealth);
-		graphs.add(wealthNeighbours);
+		chartContainer.addChart(livingAgents);
+		chartContainer.addChart(totalWealth);
+		chartContainer.addChart(wealthNeighbours);
+		chartContainer.addChart(neighboursPerAgent);
 
 		// Create agents at random locations
 		Random r = new Random();
@@ -213,12 +215,15 @@ public class God extends JPanel {
 		int[] neighboursCount = new int[maxCountNeighbours + 1];
 		Integer [] neighboursAxisArray = new Integer[maxCountNeighbours + 1];
 		Integer[] wealthForGraphArray = new Integer[maxCountNeighbours + 1];
+		Integer[] neighboursForGraphArray = new Integer[maxCountNeighbours + 1];
 		for(int i = 0; i < maxCountNeighbours + 1; i++){
 			neighboursAxisArray[i] = new Integer(i);
 			wealthForGraphArray[i]= new Integer(0);
+			neighboursForGraphArray[i]= new Integer(0);
 		}
 		for(Triple a : agents){
 			wealthForGraphArray[a.a.neighbours.size()] += a.a.requestResource();
+			neighboursForGraphArray[a.a.neighbours.size()] += 1;
 			neighboursCount[a.a.neighbours.size()]++;
 		}
 		for(int i = 0; i < maxCountNeighbours + 1; i++){
@@ -227,8 +232,9 @@ public class God extends JPanel {
 			}
 		}
 		
-		LinkedList<Integer> neighboursAxis = new LinkedList(Arrays.asList(neighboursAxisArray));
-		LinkedList<Integer> wealthForGraph = new LinkedList(Arrays.asList(wealthForGraphArray));
+		LinkedList<Integer> neighboursAxis = new LinkedList<Integer>(Arrays.asList(neighboursAxisArray));
+		LinkedList<Integer> wealthForGraph = new LinkedList<Integer>(Arrays.asList(wealthForGraphArray));
+		LinkedList<Integer> neighboursForGraph = new LinkedList<Integer>(Arrays.asList(neighboursForGraphArray));
 		
 
 		
@@ -236,6 +242,7 @@ public class God extends JPanel {
 		livingAgents.addVal(tickCounter, agents.size());
 		totalWealth.addVal(tickCounter, totalWealthCounter);
 		wealthNeighbours.updateValues(neighboursAxis, wealthForGraph);
+		neighboursPerAgent.updateValues(neighboursAxis, neighboursForGraph);
 	}
 
 	@Override
@@ -296,17 +303,14 @@ public class God extends JPanel {
 		g.drawString("Number of Edges:  " + edges.size(), WIDTH + 10, 40);
 		
 		// Draw graphs
-		for(Graph graph : graphs){
-			g.setColor(Color.black);
-			graph.paintComponent(g);
-		}
+		chartContainer.paintComponent(g);
 	}
 
 	private double distFunction(int xPos, int yPos, int t){
 		double x = ((double)xPos / WIDTH) * 6;
 		double y = ((double)yPos / HEIGHT) * 6;
-		double aux = Math.sin(x*Math.sin(y) + (double)tickCounter/10) * Math.cos(y * Math.cos(x) + (double)tickCounter/10);
-		//double aux = Math.sin(x + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/10);
+		//double aux = Math.sin(x*Math.sin(y) + (double)tickCounter/10) * Math.cos(y * Math.cos(x) + (double)tickCounter/10);
+		double aux = Math.sin(x + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/10);
 		//double aux = Math.sin(x) * Math.cos(y);
 		return (aux + 1)/2;
 	}
