@@ -11,7 +11,7 @@ public class Agent{
 	public Agent lastPartner;
 	public int id;
 	private static int idCounter = 0;
-	private int resource;
+	private double resource;
 	private final static int AMOUNT = 5;
 
 	public int posX, posY;
@@ -99,7 +99,7 @@ public class Agent{
 
 
 
-		// move agent in direction of chosenOne
+		// move chosenOne in direction of the agent
 		double diffX = (double) theChosenOne.posX - this.posX;
 		double diffY = (double) theChosenOne.posY - this.posY;
 		double distanceBetweenAgents = Math.sqrt((diffX*diffX) + (diffY*diffY));
@@ -136,11 +136,11 @@ public class Agent{
 		}
 	}
 	
-	public int requestResource(){
+	public double requestResource(){
 		return resource;
 	}
 	
-	public void paymentTime(int b){
+	public void paymentTime(double b){
 		resource += b;
 	}
 	

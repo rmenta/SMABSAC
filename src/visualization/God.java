@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.TileObserver;
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -31,19 +32,19 @@ public class God extends JPanel {
 	private final static int HEIGHT = 1000;
 	private final static int PANEL_WIDTH = 400;
 	private final static int RADIUS = 4;
-	private final static int TILE_SIZE = 10;
-	private final static int SLEEP_TIMER = 0;
+	private final static int TILE_SIZE = 50;
 	private final static boolean showInfo = false;
 
 	// Properties of the model
 	public final static double PROXIMITY = 0.95;
 	private final static int COST_OF_LIFE = 1;
 	private final static int STARTING_CAPITAL = 255;
+	private static int[][] parcelCount = new int[WIDTH/TILE_SIZE][HEIGHT/TILE_SIZE];
 	
 	// Interesting factors
-	private final static double MERCIFUL_GOD_FACTOR = 0.8;	// 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static double MERCIFUL_GOD_FACTOR = 2.;	// 1 -> total of distribution = total need, < 1 -> dist < need
 	private final static double WILLINGNESS_TO_TRADE = 1;	// chance that a trade even takes place at all (independent of rest)
-	private final static double GOLD_DIG_FACTOR = 0.1;		// 0: Only trade with people you like, 1: Only trade with poor people
+	private final static double GOLD_DIG_FACTOR = 0.5;		// 0: Only trade with people you like, 1: Only trade with poor people
 
 	// Graphs
 	private Chart livingAgents;
@@ -72,7 +73,7 @@ public class God extends JPanel {
 		totalWealth = new XYChart("Wealth of all living agents", "Time", "Total Wealth");
 		wealthNeighbours = new Histogram("Wealth compared to amount of neighbours", "Neighbours", "Wealth");
 		neighboursPerAgent = new Histogram("Neighbours per Agent", "Neighbours", "Agents");
-		totalWealth.setMaxSize(0);
+		totalWealth.setMaxSize(500);
 
 		// Add graphs to list
 		chartContainer.addChart(livingAgents);
@@ -85,7 +86,6 @@ public class God extends JPanel {
         while (agents.size() < NUMBER_OF_AGENTS) {
 
             // Create agent
-
             int x = RADIUS + r.nextInt(WIDTH - 10 * RADIUS);
             int y = RADIUS + r.nextInt(HEIGHT - 10 * RADIUS);
             Agent a = new Agent(r.nextInt(STARTING_CAPITAL), WILLINGNESS_TO_TRADE, GOLD_DIG_FACTOR, x, y);
@@ -101,7 +101,7 @@ public class God extends JPanel {
             // add newly created agent to list
             if (!tooClose) {
                 agents.add(a);
-
+                parcelCount[a.posX / TILE_SIZE][a.posY / TILE_SIZE]++;
             }
         }
 
@@ -152,11 +152,6 @@ public class God extends JPanel {
 		while (true) {
 			oli.rule();
 			oli.paintImmediately(0, 0, WIDTH + PANEL_WIDTH, HEIGHT);
-			try {
-				Thread.sleep(SLEEP_TIMER);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 
 
@@ -168,30 +163,43 @@ public class God extends JPanel {
 		tickCounter++;
 		fpsCounter++;
 		
-		// Let agents do their stuff
+		// Agents propose trades with their neighbours
 		for (Agent agent : agents) {
+			parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE]--;
 			agent.proposeTrade();
 		}
 
+		// Agents trade
 		for (Agent agent : agents) {
 			agent.trade();
+		}
+		
+		// Change parcelCount according to movement
+		for (Agent agent : agents) {
+			parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE]++;
 		}
 
 		// calculate factor for distribution
 		double sumDistribution = 0;
-		for(Agent agent : agents){
-			sumDistribution += distFunction(agent.posX, agent.posY, tickCounter);
+		for(int i = 0; i < WIDTH; i+=TILE_SIZE){
+			for(int j = 0; j < HEIGHT; j+=TILE_SIZE){
+				sumDistribution += distFunction(i + TILE_SIZE/2, j + TILE_SIZE/2, tickCounter);
+			}
 		}
-		double factor = 1. / sumDistribution;
+		double factor = COST_OF_LIFE * NUMBER_OF_AGENTS * MERCIFUL_GOD_FACTOR * (1. / sumDistribution);
 		
 		// Distribute resources and mark dead agents
 		LinkedList<Agent> toRemove = new LinkedList<>();
 		int totalWealthCounter = 0;
 		for (Agent agent : agents) {
-			int salary = (int)Math.round(factor * distFunction(agent.posX, agent.posY, tickCounter) * (COST_OF_LIFE * agents.size() * MERCIFUL_GOD_FACTOR));
+			int xPos = (agent.posX / TILE_SIZE) * TILE_SIZE;
+			int yPos = (agent.posY / TILE_SIZE) * TILE_SIZE;
+			int numberInParcel = parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE];
+			double salary = factor * distFunction(xPos, yPos, tickCounter) / (double)numberInParcel;
 			agent.paymentTime(salary - COST_OF_LIFE);
 			if (agent.requestResource() < 0) {
 				agent.die();
+				parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE]--;
 				toRemove.add(agent);
 			} else{
 				totalWealthCounter += agent.requestResource();
@@ -230,7 +238,7 @@ public class God extends JPanel {
 			neighboursForGraphArray[i]= 0;
 		}
 		for(Agent a : agents){
-			wealthForGraphArray[a.neighbours.size()] += a.requestResource();
+			wealthForGraphArray[a.neighbours.size()] += (int)a.requestResource();
 			neighboursForGraphArray[a.neighbours.size()] += 1;
 			neighboursCount[a.neighbours.size()]++;
 		}
@@ -262,8 +270,11 @@ public class God extends JPanel {
 		// Draw distribution in background
 		for(int i = 0; i < WIDTH; i+=TILE_SIZE){
 			for(int j = 0; j < HEIGHT; j+=TILE_SIZE){
-				g.setColor(new Color(255, (int)(255 * distFunction(i, j, tickCounter)), 0));
+				g.setColor(new Color(255, (int)(255 * distFunction(i + TILE_SIZE / 2, j + TILE_SIZE / 2, tickCounter)), 0));
 				g.fillRect(i, j, TILE_SIZE, TILE_SIZE);
+				
+				g.setColor(Color.black);
+				if(showInfo){g.drawString(Integer.toString(parcelCount[i / TILE_SIZE][j / TILE_SIZE]), i, j+10);}
 			}
 		}
 
@@ -292,11 +303,11 @@ public class God extends JPanel {
 		// Draw all the agents
 		g.setColor(Color.black);
 		for (Agent a : agents) {
-			g.setColor(new Color(0, Math.min(255, a.requestResource()), 0));
+			g.setColor(new Color(0, Math.min(255, (int)a.requestResource()), 0));
 			g.fillOval(a.posX - RADIUS, a.posY - RADIUS, 2 * RADIUS, 2 * RADIUS);
 			g.setColor(Color.black);
 			if(showInfo){
-				g.drawString("   ID: " + a.id + ", " + a.requestResource(), a.posX, a.posY);
+				g.drawString("   ID: " + a.id + ", " + Double.toString(a.requestResource()).substring(0, 6), a.posX, a.posY);
 			}
 		}
 
@@ -323,13 +334,13 @@ public class God extends JPanel {
 		double x = ((double)xPos / WIDTH) * 6;
 		double y = ((double)yPos / HEIGHT) * 6;
 		double aux0 = Math.sin(x*Math.cos(x) + (double)tickCounter/10.) * Math.cos(y * Math.sin(x) );
-		double aux1 = Math.sin(x + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/10);
+		double aux1 = Math.sin(x + (double)tickCounter/500) * Math.cos(y + (double)tickCounter/500);
 		double aux2 = Math.sin(x) * Math.cos(y);
 		double aux3 = Math.sin(x * Math.sin(y) + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/30);
 		Random r = new Random();
 		double aux4 = r.nextDouble();
-		//return (aux2 + 1)/2;
-		return aux4;
+		return (aux1 + 1)/2;
+		//return aux4;
 	}
 	
 	private double getDistance(int x1, int y1, int x2, int y2) {
