@@ -95,7 +95,7 @@ public class Agent{
 		// actually trade stuff
 		theChosenOne.resource += AMOUNT;
 		resource -= AMOUNT;
-		System.out.println("Agent " + id + " supported Agent " + theChosenOne.id);
+		//System.out.println("Agent " + id + " supported Agent " + theChosenOne.id);
 
 
 
@@ -140,7 +140,7 @@ public class Agent{
 		return resource;
 	}
 	
-	public void getWhatYouDeserve(int b){
+	public void paymentTime(int b){
 		resource += b;
 	}
 	
