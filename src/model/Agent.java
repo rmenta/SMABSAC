@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Agent{
 	public LinkedList<Neighbour> neighbours;
-	public LinkedList<Agent> tradingRequests;
+	private LinkedList<Agent> tradingRequests;
 	public Agent lastPartner;
 	public int id;
 	private static int idCounter = 0;
@@ -30,8 +30,8 @@ public class Agent{
 		this.posX = xPos;
 		this.posY = yPos;
 
-		neighbours = new LinkedList<Neighbour>();
-		tradingRequests = new LinkedList<Agent>();
+		neighbours = new LinkedList<>();
+		tradingRequests = new LinkedList<>();
 		this.resource = resource;
 		this.willingnessToTrade = wTT;
 		this.goldDigFactor = gDF;
@@ -58,13 +58,16 @@ public class Agent{
 	}
 	
 	public void trade(){
+		Random r =  new Random();
 		lastPartner = null;
+		posX = (posX + (int) ((r.nextDouble()-0.5)*4)) % 1500;
+		posY = (posY + (int) ((r.nextDouble()-0.5)*4)) % 1000;
 		if(tradingRequests.size() == 0){
 			return;
 		}
 		
 		// Check if trade happens
-		Random r =  new Random();
+
 		if(r.nextDouble() > willingnessToTrade){
 			tradingRequests.clear();
 			return;

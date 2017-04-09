@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SMABSAC:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SMABSAC_jar</output-path>
+    <root id="archive" name="SMABSAC.jar">
+      <element id="module-output" name="SMABSAC" />
+    </root>
+  </artifact>
+</component>

@@ -4,19 +4,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.TileObserver;
-import java.io.File;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 
 import model.*;
 
@@ -27,7 +20,7 @@ import model.*;
  */
 public class God extends JPanel {
 	// Properties of the visualization
-	private final static int NUMBER_OF_AGENTS = 500;
+	private final static int NUMBER_OF_AGENTS = 300;
 	private final static int WIDTH = 1500;
 	private final static int HEIGHT = 1000;
 	private final static int PANEL_WIDTH = 400;
@@ -36,13 +29,13 @@ public class God extends JPanel {
 	private final static boolean showInfo = false;
 
 	// Properties of the model
-	public final static double PROXIMITY = 0.95;
+	private final static double PROXIMITY = 0.95;
 	private final static int COST_OF_LIFE = 1;
 	private final static int STARTING_CAPITAL = 255;
 	private static int[][] parcelCount = new int[WIDTH/TILE_SIZE][HEIGHT/TILE_SIZE];
 	
 	// Interesting factors
-	private final static double MERCIFUL_GOD_FACTOR = 2.;	// 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static double MERCIFUL_GOD_FACTOR = 2;	// 1 -> total of distribution = total need, < 1 -> dist < need
 	private final static double WILLINGNESS_TO_TRADE = 1;	// chance that a trade even takes place at all (independent of rest)
 	private final static double GOLD_DIG_FACTOR = 0.5;		// 0: Only trade with people you like, 1: Only trade with poor people
 
@@ -64,8 +57,8 @@ public class God extends JPanel {
 	private God() {
 
 		// Create lists
-		agents = new LinkedList<Agent>();
-		edges = new LinkedList<Edge>();
+		agents = new LinkedList<>();
+		edges = new LinkedList<>();
 
 
 		// Create graphs
@@ -146,7 +139,7 @@ public class God extends JPanel {
 		JFrame frame = new JFrame("[SMABSAC]");
 		frame.add(oli);
 		frame.setSize(WIDTH + PANEL_WIDTH, HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
 		while (true) {
@@ -207,7 +200,7 @@ public class God extends JPanel {
 		}
 
 		// delete dead agents and mark edges to be removed
-		LinkedList<Edge> edgesToRemove = new LinkedList<Edge>();
+		LinkedList<Edge> edgesToRemove = new LinkedList<>();
 		for (Agent a : toRemove) {
 			System.out.println("Agent " + a.id + " has passed away.");
 			agents.remove(a);

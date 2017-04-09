@@ -8,6 +8,7 @@ import java.util.LinkedList;
 /**
  * Created by God on 23.03.2017.
  */
+
 abstract public class Chart {
 	// General properties of the graph
 	private String graphName;
