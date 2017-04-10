@@ -21,11 +21,11 @@ import model.*;
 public class God extends JPanel {
 	// Properties of the visualization
 	private final static int NUMBER_OF_AGENTS = 300;
-	private final static int WIDTH = 1500;
-	private final static int HEIGHT = 1000;
+	private final static int WIDTH = 880;
+	private final static int HEIGHT = 800;
 	private final static int PANEL_WIDTH = 400;
 	private final static int RADIUS = 4;
-	private final static int TILE_SIZE = 50;
+	private final static int TILE_SIZE = 40;
 	private final static boolean showInfo = false;
 
 	// Properties of the model
@@ -46,7 +46,7 @@ public class God extends JPanel {
 	private Chart neighboursPerAgent;
 
 	// Bookkeeping
-	private ChartContainer chartContainer = new ChartContainer(WIDTH + 10, 100, PANEL_WIDTH - 80, 120);
+	private ChartContainer chartContainer = new ChartContainer(WIDTH + 10, 100, PANEL_WIDTH - 80, 75);
 	private LinkedList<Agent> agents;
 	private LinkedList<Edge> edges;
 	private int tickCounter = 0;
@@ -66,7 +66,7 @@ public class God extends JPanel {
 		totalWealth = new XYChart("Wealth of all living agents", "Time", "Total Wealth");
 		wealthNeighbours = new Histogram("Wealth compared to amount of neighbours", "Neighbours", "Wealth");
 		neighboursPerAgent = new Histogram("Neighbours per Agent", "Neighbours", "Agents");
-		totalWealth.setMaxSize(500);
+		totalWealth.setMaxSize(0);
 
 		// Add graphs to list
 		chartContainer.addChart(livingAgents);
@@ -317,6 +317,7 @@ public class God extends JPanel {
 		g.setColor(Color.black);
 		g.drawString("Number of Agents: " + agents.size(), WIDTH + 10, 20);
 		g.drawString("Number of Edges:  " + edges.size(), WIDTH + 10, 40);
+		//g.drawString("Merciful god factor: " + MERCIFUL_GOD_FACTOR, WIDTH + 10, 60);
 		g.drawString("TPS: " + fps, WIDTH + PANEL_WIDTH - 100, 20);
 		
 		// Draw graphs

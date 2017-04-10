@@ -60,8 +60,8 @@ public class Agent{
 	public void trade(){
 		Random r =  new Random();
 		lastPartner = null;
-		posX = (posX + (int) ((r.nextDouble()-0.5)*4)) % 1500;
-		posY = (posY + (int) ((r.nextDouble()-0.5)*4)) % 1000;
+		//posX = (posX + (int) ((r.nextDouble()-0.5)*4)) % 880;
+		//posY = (posY + (int) ((r.nextDouble()-0.5)*4)) % 800;
 		if(tradingRequests.size() == 0){
 			return;
 		}
