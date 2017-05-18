@@ -1,0 +1,285 @@
+% This file provides a template to format JASSS articles v.0.5, 2015-03-24
+
+% In order to be compiled, the following packages should be installed in your system:
+% graphicx,xcolor, booktabs,amsmath, ifthen, geometry, authblk, natbib, endnotes
+ 
+ % Please use pdflatex
+
+% The font used is Source Sans Pro, normally included in Tex Live and other  major LaTeX distributions
+% Location at CTAN: http://www.ctan.org/tex-archive/fonts/sourcesanspro/
+% See also: http://www.tug.dk/FontCatalogue/sourcesanspro/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{JASSS}
+\usepackage[utf8]{inputenc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Editorial fields (to be set in case of publication)	
+% Please leave this section untouched
+%\doinum{10.18564/jasss.xxxx}
+%\volume{xx}
+%\issue{x}
+%\article{x}
+%\pubyear{20xx}
+%\received{dd-mmm-yyyy}
+%\accepted{dd-mmm-yyyy}
+%\published{dd-mmm-yyyy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% title, authors and affiliations	
+
+\title{Spatial Graph-Based Social Trade\\ Transaction Simulation}
+
+%All authors should be included in the submission. To anonymise the submission, set to 'true' the \reviewcopy command below. However, before submitting  you can check that all the informations you entered are correct by temporarily setting it to 'false'. Please remember to set it back to 'true' before the submission.
+\reviewcopy{false} 
+
+\author[1]{Manuel Bröchin}
+\affil[1]{Head of the SMABSAC Boiz}
+
+% Subsequent author should be included using the following template. You can add more in case of need, just remember to appropriately set the corresponding number.  Please check the the authblk package documentation  in case of doubts
+
+\author[2]{Renato Menta}
+\affil[2]{Second Hand}
+
+\author[3]{Oliver Blaser}
+\affil[3]{hallo}
+
+%\author[4]{fourth author here}
+%\affil[4]{fourth of the third author here}
+
+% In case of multiple affiliation for the same author:
+
+%\author[1,2]{Author name here}
+%\affil[1]{First affiliation}
+%\affil[2]{Second affiliation}
+
+%  In case of several authors sharing the same affiliation:
+
+%\author[1]{First author name}
+%\author[1]{Second author name}
+%\affil[1]{Affiliation}
+
+% email for the corresponding author
+\email{rmenta@ethz.ch}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% NOTES. Please use endnotes. Notes should be placed after the main text and appendices and before the references. Also remember to uncomment the \theendnotes commands at the end of the document (just before the references)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% REFERENCES should be included using the \citep, \citet, etc. commands provided by the natbib package
+
+\usepackage{natbib}
+	\setcitestyle{authoryear,round,aysep={}}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+% EXTRA PACKAGES. Please place here any extra package you need along with your own command definitions
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Abstract and keywords
+
+\begin{abstract}
+Add your abstract here
+\end{abstract}
+
+\begin{keywords}
+Add your keywords here separated by commas
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start of  paragraph numbering. Please leave this untouched
+\parano{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% MAIN TEXT
+
+% Place the main text here. Please use only \section, \subsection, and \subsubsection sectioning commands to structure your text. Do NOT use lower sectioning commands, including \paragraph and \subparagraph
+
+%For bulleted, numbered and description lists the class provides three asterisked environments to replace the standard LaTeX ones: itemize*, enumerate*, and description*. Please use these ones as the standard environment may cause issues with the paragraph numbering system.
+
+%\begin{itemize*}
+%     \item 
+%     \item
+%     \item
+% \end{itemize*} 
+
+% hyperlinks (to models, videos, etc.) can be included via the \href command (remember to put \usepackage{hyperref} in the preamble). Check the hyperref documentation for details
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Abstract}
+
+\section{Introduction}
+
+\section{Model}
+\subsection{Purpose}
+The start of our investigation is the question of how much influence social behaviour and social structure have on the success of a civilization of humans. We chose to use the action of trading as condensate of all action. This is of course an underapproximation of all actions a human takes. Real humans have a multitude of motives such as health, love, happiness and many more. Nevertheless we follow the tradition of assuming a homo economicus who always tries to maximize utility or profit\footnote{Rittenberg and Trigarthen. "Chapter 6". Principles of Microeconomics}. As social behaviour we define the preferences someone has towards his peers: if he has the choice between two individuals as trading partners, which one does he prefer and what factors help him make his decision? Is he utalitarian and as such tries to maximize the utility of his actions? Or is he egoist and tries to maximize his own benefit? We model the social structure twofold: humans have logical connections corresponding to relations and physical connections in the form of their position on the map. We will explain further why we think that this is a useful approximation of a human civilization in the section about Design Concepts. With these abstractions our model allows testing of what kind of social behaviour and structure is most successful.
+
+
+\subsection{Entities, state variables, and scales}
+Our model uses homogenous agents. Each agent represents a human being. Agents act according to two sets of variables: Private values, which are different for each agent and can change over time and influence the behaviour of a specific agent, and static values, which are the same for each agent and determine the coarse behaviour of the agents.\\
+
+Private variables:
+\begin{description*}
+	\item[resources]\text{}\\
+		Variable of type \texttt{Double}, ranging from 0 to (potentially) infinity. This represents how much an agent possesses and influences his trading behaviour.
+
+	\item[sympathy]\text{}\\
+		Variable of type \texttt{int}, ranging from (potentially) minus infinity to (potentially) plus infinity. This represents how much an agent likes one specific neighbour. It influences its trading behaviour and is adjusted as explained below.
+
+	\item[position on grid]\text{}\\
+		The $x$- and $y$-coordinates (of type \texttt{int}) of an agent on the plane.
+\end{description*}
+
+Static variables:
+\begin{description*}
+	\item[willingness-to-trade-factor ($wtf$)]\text{}\\
+		Variable of type \texttt{double}, ranging from 0 to 1. This represents the chance that an agent actually makes a trade with someone else, independently of all the other factors.
+
+	\item[gold-dig-factor ($gdf$)]\text{}\\
+		Variable of type \texttt{Double}, ranging from 0 to 1. This represents how an agent decides on his trading partner. If the value is close to 0, the agent will choose a partner which he likes, disregarding the amount of resources this potential partner has. If the value is close to 1, the agent will choose a partner which has lots of resources, disregarding how much he likes him.
+
+	\item[circe-of-life-factor ($clf$)]\text{}\\
+		Variable of type \texttt{Double}, ranging from 0 to 1. This represents the chance that an agent dies or spawns another agent (representing sexual reproduction) in any given iteration independent of other factors or variables.
+\end{description*}
+
+The plane is divided into a parcel-grid. In each iteration (tick), every parcel gets resources allocated according to a distribution function (see below). After the resources are distributed, all agents on a specific parcel will share the resources on it. Resources on empty parcels are not used and get overwritten in the next iteration. The partitioning into parcels allows us to simulate starvation caused by overpopulation (similar to the real world): since all agents located on a specific parcel share it's resources, it's counter-beneficial for too many agents to be on the same parcel.\\
+
+To determine how the resources are distributed, we use a variable called \textbf{merciful-god-factor} ($mgf$) and a distribution function $f: \texttt{int} \times \texttt{int} \to \texttt{Double}$. If the $mgf$ is equal to 1, the sum of all resources dsitributed on the plane are sufficient for all agents to survive. If the $mgf$ is above 1, there is an excess of resources, if the $mgf$ is below 1, there is a shortage (linearly dependent on the $mgf$).
+
+
+\subsection{Process overview and scheduling}
+Our simulation works with synchronous updates (ticks), meaning all agents do the same things at the same time. The actions in each tick can be divided into three main parts:
+\subsubsection{Resource distribution}
+		    At the beginning of each tick the resources each parcel receives are calculated and distributed accordingly. Now all agents have the possibility to propose a trade with exactly one of their neighbours. They do this by finding the best match for a trading partner in the list of their neighbours. The best trading partner is found by computing
+	$$v = gdf \cdot resources + (1-gdf) \cdot sympathy$$
+for each neighbour and selecting the best candidate (candidate with the highest value $v$).
+
+\subsubsection{Trade transaction}
+	 Now all agents can view the list of their neighbours that have proposed a trade with them. The individual willingness-to-trade factor decides with what probability an agent considers accepting a trade in each tick. If an agent decides to accept a trade he finds a best match for a trading partner with the same formula we already used above. A trade causes the sympathy of the giving agent towards the receiving agent to sink by 1, and conversely for the receiving agent towards the giving agent to rise by 2. This mechanism ensures that frequent interactions between a pair of agents results in a strengthened relationship.\\
+
+\subsubsection{Agent movements}
+		After all the trades have been completed the agents will update their position according to the following schema:
+\begin{enumerate*}
+	\item
+		The agent checks whether he has received more resources this tick an in the previous one, if so, he keeps his position, else he moves to his previous position.
+
+	\item
+		If the agent has received resources from another agent, he will move towards his trading partner.
+
+	\item
+		The agent will move in a random direction (this movement is smaller compared to first type of movement). 
+\end{enumerate*}
+The first and second movement together ensure collective learning in such that agents follow the leads of other agents to more prosperous regions of the map. The random movement helps avoiding local minima. This concludes one tick and the same process starts over again.
+
+
+\subsection{Design concepts}
+
+\subsubsection{Basic Principles}
+	social behaviour on a scale from only sympathy to only rationality (gold-dig-factor)
+
+\subsubsection{Emergence}
+	we expect the agents to adapt to the environment. How well the agents will be able to adapt will depend on the indipendent variables.
+
+\subsubsection{Adaptation}
+	The agents adapt themselves to the current situation by moving around on the grid. Their basic instinct is not to move to a place where they get less resources than before. This means they explicitly seek to increase their measure of success, namely the amount of resources they possess.
+
+\subsubsection{Objectives}
+	implicit objective is survival. we don't encode any behaviour for this though since it is one of our goals to see what strategies lead to better survival rates than others. Explicit objective is improving one's position on the grid which is done according to the rules described in section process overview. Also agents want to maximize the wealth of their most deserving neighbour without compromising their own wealth too much.
+
+\subsubsection{Learning}
+	learning happens collectively: an agent accepting a trade signals to the receiving agent that the position of the giving agent is superior to his. The movement the receiving agent then takes is an attempt to improve his own position on the grid. This way trading acts as a kind of communication between agents as it does in the real world. Money flowing from urban to rural areas for example often leads to a flow of people from rural to urban areas [Davis, Kingsley. "The Urbanization of the Human Population"].
+
+\subsubsection{Prediction}
+	 prediction mechanism built into the agents is the movement reversing. An agent always remembers how much he received in the last tick and compares this value to how much he receives in the current tick, if he received more at his old position he returns to the old position. This is similar to temporal difference learning in so far as the agents change their prediction of which direction leads to fruitful soil based on the prediction they have made before and on the result this prediction has brought.
+
+\subsubsection{Sensing}
+	First and foremost each agent receives feedback in each tick on how fruitful the soil is he is positioned on. This might give him a wrong idea about the true quality of the soil though since the resources of one parcel are always distributed among all its inhabitants. Very closely related to the previous point we want to emphasize again that the sensation of an agent is enhanced by the network he is connected to: through his neighbours and the amount of resources they have the agent gets a pretty good idea of where the soil could be fruitful.
+
+\subsubsection{Interaction}
+	the obvious interaction between agents is the trading.... don't know what to write
+
+\subsubsection{Stochasticity}
+	age of the agents is modeled with stochasticity: instead of giving each agent an explicit age and fixing the age of death or increasing the chance of death with increasing age we simply set the chance of death for all agents in a certain tick constant to 1/1000. This gives an expected age of 1000 ticks for each agent. Analogously we deal with spawning new agents (giving birth). Similarly we model the behavioural trait of agentswanting to trade or not, the willingness-to-trade factor.  
+
+\subsubsection{Collectives}
+\subsubsection{Observation}
+
+\subsection{Initialization}
+	In the beginning, the soil quality is computed according to a given distribution function and a cellular grid is drawn on the plane dependingly. The yellower areas correspond to better, the redder to worse soil quality. 500 Agents are created and randomly distributed on the plane. The connections between Agents that correspond to the knowing-relationship are made such that those Agents that are nearer to each other have a higher possibility to be adjacent. The sympathy values between all agents are initially set to zero. Each Agent starts with the same amount of resources, namely [AMOUNT??].
+
+\subsection{Input data}
+\subsection{Submodels}
+
+
+
+% FIGURES AND TABLES
+
+% Figures should be placed in the desired position within the text. Please follow the template below.
+% Figure widths can be set using absolute dimensions (e.g., [width = 12cm]) or relative ones (e.g., [width = 0.8/textwidth]). We strongly suggest to use the latter option, as this allows automatic adaptation to different paper widths
+
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=????\textwidth]{????}
+%\caption{}
+%\label{fig:????}
+%\end{figure}
+
+% Tables should be placed in the desired position within the text. Please follow the template below
+
+%\begin{table}[!t]
+%	\centering
+%	\begin{tabular}{????}
+%	\toprule
+% 	% first line
+%	\midrule
+%	% tale body	
+%	\bottomrule			
+%	\end{tabular}
+%	\caption{}
+%	\label{tab:????}	
+%\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End of  paragraph numbering. Please leave this untouched
+\endparano
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% APPENDICES
+% Put your appendices here. Please use the normal sectioning command, e.g.,
+% \section{Appendix A: <title of the appendix>}
+% \section{Appendix B: <title of the appendix>}
+% ...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ENDNOTES. Please uncomment the line below in case of notes.
+% \theendnotes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% REFERENCES.
+% The JASSS bibliographic style file (jasss.bst) is included in the bundle. Please use BibTeX, not BibLaTeX.
+% Use natbib commands for references (\citep{}, \citet{}, etc.), not standard LaTeX ones (\cite{}).
+% Remember to include the doi and url fields in your bib database. The address field should be included for books.
+% Please upload the bib file (not just the bbl one) when submitting.
+ 
+\bibliographystyle{jasss}
+\bibliography{} % Please set the right name for your bib file
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \end{document}
