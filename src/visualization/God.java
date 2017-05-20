@@ -20,7 +20,7 @@ import model.*;
  */
 public class God extends JPanel {
 	// Properties of the visualization
-	private final static int NUMBER_OF_AGENTS = 300;
+	private final static int NUMBER_OF_AGENTS = 500;
 	private final static int WIDTH = 880;
 	private final static int HEIGHT = 800;
 	private final static int PANEL_WIDTH = 400;
@@ -33,11 +33,14 @@ public class God extends JPanel {
 	private final static int COST_OF_LIFE = 1;
 	private final static int STARTING_CAPITAL = 255;
 	private static int[][] parcelCount = new int[WIDTH/TILE_SIZE][HEIGHT/TILE_SIZE];
+	private static int MAX_AGE = 1000;
+	private static int EARLIEST_BIRTH_AGE = 500;
+	private static int BIRTH_PERIOD = 20;
 	
 	// Interesting factors
-	private final static double MERCIFUL_GOD_FACTOR = 2;	// 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static double MERCIFUL_GOD_FACTOR = 1;	// 1 -> total of distribution = total need, < 1 -> dist < need
 	private final static double WILLINGNESS_TO_TRADE = 1;	// chance that a trade even takes place at all (independent of rest)
-	private final static double GOLD_DIG_FACTOR = 0.5;		// 0: Only trade with people you like, 1: Only trade with poor people
+	private final static double GOLD_DIG_FACTOR = 1;		// 0: Only trade with people you like, 1: Only trade with poor people
 
 	// Graphs
 	private Chart livingAgents;
@@ -81,7 +84,8 @@ public class God extends JPanel {
             // Create agent
             int x = RADIUS + r.nextInt(WIDTH - 10 * RADIUS);
             int y = RADIUS + r.nextInt(HEIGHT - 10 * RADIUS);
-            Agent a = new Agent(r.nextInt(STARTING_CAPITAL), WILLINGNESS_TO_TRADE, GOLD_DIG_FACTOR, x, y);
+            int age = r.nextInt(MAX_AGE);
+            Agent a = new Agent(r.nextInt(STARTING_CAPITAL), WILLINGNESS_TO_TRADE, GOLD_DIG_FACTOR, x, y, age);
 
             // Check if space is not yet occupied
             boolean tooClose = false;
@@ -104,9 +108,13 @@ public class God extends JPanel {
 
     }
 
+    private double getDistanceRatio(double distance){
+		double maxLength = getDistance(0, 0, WIDTH, HEIGHT);
+		return Math.pow(1 - distance / maxLength, 1. / (1 - PROXIMITY));
+	}
     private void assignNeighbours() {
         Random r = new Random();
-        double maxLength = getDistance(0, 0, WIDTH, HEIGHT);
+
         LinkedList<Agent> others = (LinkedList<Agent>) agents.clone();
         for (Agent me : agents) {
             for (Agent other : others) {
@@ -116,12 +124,7 @@ public class God extends JPanel {
                 }
                 // the higher the ratio the closer two agents are
                 double distance = getDistance(me.posX, me.posY, other.posX, other.posY);
-                double ratio = Math.pow(1 - distance / maxLength, 1. / (1 - PROXIMITY)); // bit
-                // of
-                // a
-                // complicated
-                // function
-                if (ratio > r.nextDouble()) {
+                if (getDistanceRatio(distance) > r.nextDouble()) {
                     edges.add(new Edge(me, other));
                     me.neighbours.add(new Neighbour(other, 0));
                     other.neighbours.add(new Neighbour(me, 0));
@@ -141,17 +144,21 @@ public class God extends JPanel {
 		frame.setSize(WIDTH + PANEL_WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
+		int i = 0;
 		while (true) {
 			oli.rule();
-			oli.paintImmediately(0, 0, WIDTH + PANEL_WIDTH, HEIGHT);
+			 //if(i%20==0)
+				oli.paintImmediately(0, 0, WIDTH + PANEL_WIDTH, HEIGHT);
+			i++;
+
 		}
 
 
 	}
 
 	private void rule() {
-		
+		Random r = new Random();
+
 		//Increase tick counter by one
 		tickCounter++;
 		fpsCounter++;
@@ -166,7 +173,7 @@ public class God extends JPanel {
 		for (Agent agent : agents) {
 			agent.trade();
 		}
-		
+
 		// Change parcelCount according to movement
 		for (Agent agent : agents) {
 			parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE]++;
@@ -190,7 +197,10 @@ public class God extends JPanel {
 			int numberInParcel = parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE];
 			double salary = factor * distFunction(xPos, yPos, tickCounter) / (double)numberInParcel;
 			agent.paymentTime(salary - COST_OF_LIFE);
-			if (agent.requestResource() < 0) {
+
+			double probabilityToDie = 0.0001;
+
+			if (agent.requestResource() < 0 || r.nextDouble() < probabilityToDie) {
 				agent.die();
 				parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE]--;
 				toRemove.add(agent);
@@ -211,10 +221,76 @@ public class God extends JPanel {
 			}
 		}
 
+
+
+		// probably delete far away neighbours
+		for(Agent a : agents){
+			double maxDistance = 0.0;
+			Agent maxAgent = null;
+			for(Neighbour n: a.neighbours){
+				double distance = getDistance(a.posX, a.posY, n.agent.posX, n.agent.posY);
+				if(distance > maxDistance) {
+					maxDistance = distance;
+					maxAgent = n.agent;
+				}
+			}
+
+			if(maxAgent == null) continue;
+
+			if(getDistanceRatio(maxDistance)*5 < r.nextDouble()){
+				a.neighbours.remove(a.getNeighbourFromAgent(maxAgent));
+				maxAgent.neighbours.remove(maxAgent.getNeighbourFromAgent(a));
+				for(Edge e : edges){
+					if(e.a1 == a && e.a2 == maxAgent || e.a2 == a && e.a1 == maxAgent  ){
+						edgesToRemove.add(e);
+					}
+				}
+
+			}
+
+		}
+
+
+		// probably add new neighbours
+
+
+		for(Agent a: agents){
+			double probability = 1./a.neighbours.size();
+			if(probability < r.nextDouble()) continue;
+			for(Agent b: agents){
+				if(a == b) continue;
+				if(a.neighbours.contains(a.getNeighbourFromAgent(b))) continue;
+				if(getDistanceRatio(getDistance(a.posX,a.posY,b.posX,b.posY)) > r.nextDouble()){
+					a.neighbours.add(new Neighbour(b,0));
+					b.neighbours.add(new Neighbour(a,0));
+					edges.add(new Edge(a,b));
+					break;
+				}
+			}
+		}
+
 		// delete edges
-        edges.removeAll(edgesToRemove);
+		edges.removeAll(edgesToRemove);
+
+		// MAKE BABIES :D
+		LinkedList<Agent> childrenToAdd = new LinkedList<>();
+		for(Agent a : agents){
+			if(a.age >= EARLIEST_BIRTH_AGE && a.age <= EARLIEST_BIRTH_AGE + BIRTH_PERIOD){
+				Agent child = new Agent((int)a.requestResource()/2, WILLINGNESS_TO_TRADE, GOLD_DIG_FACTOR, a.posX, a.posY, 0);
+				a.paymentTime(-a.requestResource()/2);
+				childrenToAdd.add(child);
+				parcelCount[a.posX / TILE_SIZE][a.posY / TILE_SIZE]++;
+				for(Neighbour n : a.neighbours){
+					child.neighbours.add(n);
+					edges.add(new Edge(child, n.agent));
+				}
+				System.out.println("Agent " + a.id + " has made a fucking Baby :D");
+			}
+		}
+
+		agents.addAll(childrenToAdd);
 		
-		// copmute stuff for graphs
+		// compute stuff for graphs
 		int maxCountNeighbours = 0;
 		for(Agent a : agents){
 			if(a.neighbours.size() > maxCountNeighbours){
@@ -252,6 +328,7 @@ public class God extends JPanel {
 		totalWealth.addVal(tickCounter, totalWealthCounter);
 		wealthNeighbours.updateValues(neighboursAxis, wealthForGraph);
 		neighboursPerAgent.updateValues(neighboursAxis, neighboursForGraph);
+
 	}
 
 	@Override
@@ -297,7 +374,7 @@ public class God extends JPanel {
 		g.setColor(Color.black);
 		for (Agent a : agents) {
 			g.setColor(new Color(0, Math.min(255, (int)a.requestResource()), 0));
-			g.fillOval(a.posX - RADIUS, a.posY - RADIUS, 2 * RADIUS, 2 * RADIUS);
+			g.fillOval(a.posX - RADIUS, a.posY - RADIUS, 2*RADIUS, 2*RADIUS);
 			g.setColor(Color.black);
 			if(showInfo){
 				g.drawString("   ID: " + a.id + ", " + Double.toString(a.requestResource()).substring(0, 6), a.posX, a.posY);
@@ -334,7 +411,6 @@ public class God extends JPanel {
 		Random r = new Random();
 		double aux4 = r.nextDouble();
 		return (aux1 + 1)/2;
-		//return aux4;
 	}
 	
 	private double getDistance(int x1, int y1, int x2, int y2) {

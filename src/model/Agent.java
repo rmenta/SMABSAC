@@ -1,5 +1,5 @@
 package model;
-//my commit manuel
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -13,6 +13,10 @@ public class Agent{
 	private static int idCounter = 0;
 	private double resource;
 	private final static int AMOUNT = 5;
+	public int age;
+	private double nowSalary = 0;
+	private double oldSalary = 0;
+	private Point oldPos;
 
 	public int posX, posY;
 	
@@ -23,12 +27,15 @@ public class Agent{
 	 * 
 	 * @param r Amount of resource given to this Agent when created
 	 */
-	public Agent(int resource, double wTT, double gDF, int xPos, int yPos) {
+	public Agent(int resource, double wTT, double gDF, int xPos, int yPos, int age) {
 		id = idCounter;
 		idCounter++;
 
+		this.age = age;
+
 		this.posX = xPos;
 		this.posY = yPos;
+		oldPos = new Point(xPos, yPos);
 
 		neighbours = new LinkedList<>();
 		tradingRequests = new LinkedList<>();
@@ -58,10 +65,21 @@ public class Agent{
 	}
 	
 	public void trade(){
+		// check if salary got worse, if so, go back to old position and move again
+		if(nowSalary <	 oldSalary){
+			posX = oldPos.x;
+			posY = oldPos.y;
+		}
+
+		// save old coordinates
+		oldPos.x = posX;
+		oldPos.y = posY;
+
+		// do movement stuff
 		Random r =  new Random();
 		lastPartner = null;
-		//posX = (posX + (int) ((r.nextDouble()-0.5)*4)) % 880;
-		//posY = (posY + (int) ((r.nextDouble()-0.5)*4)) % 800;
+		posX = Math.abs((posX + (int) ((r.nextDouble()-0.5)*4))) % 880;
+		posY = Math.abs((posY + (int) ((r.nextDouble()-0.5)*4))) % 800;
 		if(tradingRequests.size() == 0){
 			return;
 		}
@@ -107,8 +125,8 @@ public class Agent{
 		double diffY = (double) theChosenOne.posY - this.posY;
 		double distanceBetweenAgents = Math.sqrt((diffX*diffX) + (diffY*diffY));
 
-		theChosenOne.posX = theChosenOne.posX + (int)((((double)this.posX - (double)theChosenOne.posX) / distanceBetweenAgents) * 5);
-		theChosenOne.posY = theChosenOne.posY + (int)((((double)this.posY - (double)theChosenOne.posY) / distanceBetweenAgents) * 5);
+		theChosenOne.posX = theChosenOne.posX + (int)((((double)this.posX - (double)theChosenOne.posX) / distanceBetweenAgents) * 10);
+		theChosenOne.posY = theChosenOne.posY + (int)((((double)this.posY - (double)theChosenOne.posY) / distanceBetweenAgents) * 10);
 
 
 		// Update sympathy
@@ -145,6 +163,8 @@ public class Agent{
 	
 	public void paymentTime(double b){
 		resource += b;
+		oldSalary = nowSalary;
+		nowSalary = b;
 	}
 	
 	
@@ -154,4 +174,5 @@ public class Agent{
 			n.agent.neighbours.remove(me);
 		}
 	}
+
 }
