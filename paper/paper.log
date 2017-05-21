@@ -1,14 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.28)  18 MAY 2017 15:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.6.16)  21 MAY 2017 23:47
 entering extended mode
-**./paper.tex
+**paper.tex
 (paper.tex
-LaTeX2e <2017/01/01> patch level 1
-Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 68 languages loaded.
 (JASSS.cls
 Document Class: JASSS 
-("G:\Programme\MikTeX 2.9\tex\latex\base\article.cls"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-("G:\Programme\MikTeX 2.9\tex\latex\base\size10.clo"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -23,109 +23,109 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\sourcesanspro\sourcesansp
-ro.sty
-Package: sourcesanspro 2016/12/03 v2.6 Adobe's Source Sans Pro typeface
- ("G:\Programme\MikTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\sourcesanspro\sourcesanspro.sty"
+Package: sourcesanspro 2014/07/28 v2.4 Adobe's Source Sans Pro typeface
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
-("G:\Programme\MikTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-("G:\Programme\MikTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
-("G:\Programme\MikTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
 \XKV@toks=\toks14
 \XKV@tempa@toks=\toks15
 
-("G:\Programme\MikTeX 2.9\tex\generic\xkeyval\keyval.tex"))
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\keyval.tex"))
 \XKV@depth=\count87
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-("G:\Programme\MikTeX 2.9\tex\latex\base\fontenc.sty"
-Package: fontenc 2017/01/24 v2.0c Standard LaTeX package
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-("G:\Programme\MikTeX 2.9\tex\latex\base\ot1enc.def"
-File: ot1enc.def 2017/01/24 v2.0c Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding OT1 on input line 48.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot1enc.def"
+File: ot1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding OT1 on input line 43.
 )
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\ly1\ly1enc.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\ly1\ly1enc.def"
 File: ly1enc.def 2009/07/22 v0.7 TeX 'n ANSI encoding (DPC/KB)
 )
-("G:\Programme\MikTeX 2.9\tex\latex\base\t1enc.def"
-File: t1enc.def 2017/01/24 v2.0c Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 )
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 105.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 100.
 
-("G:\Programme\MikTeX 2.9\tex\latex\psnfss\t1ptm.fd"
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ))
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\mweights\mweights.sty
-Package: mweights 2017/03/30 (Bob Tennent) Support package for multiple-weight 
+("C:\Program Files\MiKTeX 2.9\tex\latex\mweights\mweights.sty"
+Package: mweights 2013/07/21 (Bob Tennent) Support package for multiple-weight 
 font packages. 
 LaTeX Info: Redefining \bfseries on input line 22.
-LaTeX Info: Redefining \mdseries on input line 30.
-LaTeX Info: Redefining \rmfamily on input line 38.
-LaTeX Info: Redefining \sffamily on input line 66.
-LaTeX Info: Redefining \ttfamily on input line 94.
+LaTeX Info: Redefining \mdseries on input line 29.
+LaTeX Info: Redefining \rmfamily on input line 36.
+LaTeX Info: Redefining \sffamily on input line 53.
+LaTeX Info: Redefining \ttfamily on input line 70.
 ))
-("G:\Programme\MikTeX 2.9\tex\latex\base\fontenc.sty"
-Package: fontenc 2017/01/24 v2.0c Standard LaTeX package
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-("G:\Programme\MikTeX 2.9\tex\latex\base\t1enc.def"
-File: t1enc.def 2017/01/24 v2.0c Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
-("G:\Programme\MikTeX 2.9\tex\latex\graphics\graphicx.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-("G:\Programme\MikTeX 2.9\tex\latex\graphics\graphics.sty"
-Package: graphics 2016/10/09 v1.0u Standard LaTeX Graphics (DPC,SPQR)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
 
-("G:\Programme\MikTeX 2.9\tex\latex\graphics\trig.sty"
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-("G:\Programme\MikTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
-("G:\Programme\MikTeX 2.9\tex\latex\graphics-def\pdftex.def"
-File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count88
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
-Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-("G:\Programme\MikTeX 2.9\tex\latex\graphics-cfg\color.cfg"
-File: color.cfg 2016/01/02 v1.6 sample color configuration
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
-Package xcolor Info: Model `RGB' extended on input line 1364.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty"
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \heavyrulewidth=\dimen105
 \lightrulewidth=\dimen106
@@ -145,41 +145,41 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count92
 \@thisrulewidth=\dimen117
 )
-("G:\Programme\MikTeX 2.9\tex\latex\amsmath\amsmath.sty"
-Package: amsmath 2016/11/05 v2.16a AMS math features
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-("G:\Programme\MikTeX 2.9\tex\latex\amsmath\amstext.sty"
-Package: amstext 2000/06/29 v2.01 AMS text
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
 
-("G:\Programme\MikTeX 2.9\tex\latex\amsmath\amsgen.sty"
-File: amsgen.sty 1999/11/30 v2.0 generic functions
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks16
 \ex@=\dimen118
 ))
-("G:\Programme\MikTeX 2.9\tex\latex\amsmath\amsbsy.sty"
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen119
 )
-("G:\Programme\MikTeX 2.9\tex\latex\amsmath\amsopn.sty"
-Package: amsopn 2016/03/08 v2.02 operator names
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count93
-LaTeX Info: Redefining \frac on input line 213.
+LaTeX Info: Redefining \frac on input line 210.
 \uproot@=\count94
 \leftroot@=\count95
-LaTeX Info: Redefining \overline on input line 375.
+LaTeX Info: Redefining \overline on input line 306.
 \classnum@=\count96
 \DOTSCASE@=\count97
-LaTeX Info: Redefining \ldots on input line 472.
-LaTeX Info: Redefining \dots on input line 475.
-LaTeX Info: Redefining \cdots on input line 596.
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
 \big@size=\dimen120
-LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \macc@depth=\count98
 \c@MaxMatrixCols=\count99
 \dotsspace@=\muskip10
@@ -200,20 +200,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \multlinegap=\skip44
 \multlinetaggap=\skip45
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2817.
-LaTeX Info: Redefining \] on input line 2818.
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
 )
-("G:\Programme\MikTeX 2.9\tex\latex\base\ifthen.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-("G:\Programme\MikTeX 2.9\tex\latex\geometry\geometry.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
-Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
 \Gm@cnth=\count105
@@ -229,8 +230,8 @@ Package ifvtex Info: VTeX not detected.
 \Gm@layoutvoffset=\dimen134
 \Gm@dimlist=\toks21
 
-("G:\Programme\MikTeX 2.9\tex\latex\geometry\geometry.cfg"))
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\preprint\authblk.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\preprint\authblk.sty"
 Package: authblk 2001/02/27 1.3 (PWD)
 \affilsep=\skip46
 \@affilsep=\skip47
@@ -238,13 +239,12 @@ Package: authblk 2001/02/27 1.3 (PWD)
 \c@authors=\count109
 \c@affil=\count110
 )
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\endnotes\endnotes.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\endnotes\endnotes.sty"
 \c@endnote=\count111
 \endnotesep=\dimen135
 \@enotes=\write3
 )
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
-Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
+("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
 \fancy@headwidth=\skip48
 \f@ncyO@elh=\skip49
 \f@ncyO@erh=\skip50
@@ -259,29 +259,27 @@ Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
 \paranoboxwidth=\dimen136
 \parwidth=\dimen137
 
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\sectsty\sectsty.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\sectsty\sectsty.sty"
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
 les
 ))
-("G:\Programme\MikTeX 2.9\tex\latex\base\inputenc.sty"
-Package: inputenc 2015/03/17 v1.2c Input encoding file
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2014/04/30 v1.2b Input encoding file
 \inpenc@prehook=\toks22
 \inpenc@posthook=\toks23
 
-("G:\Programme\MikTeX 2.9\tex\latex\base\utf8.def"
-File: utf8.def 2016/02/28 v1.1s UTF-8 support for inputenc
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def"
+File: utf8.def 2014/09/29 v1.1m UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-("G:\Programme\MikTeX 2.9\tex\latex\base\t1enc.dfu"
-File: t1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
-   defining Unicode char U+00A0 (decimal 160)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
+File: t1enc.dfu 2014/09/29 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00AB (decimal 171)
-   defining Unicode char U+00AD (decimal 173)
    defining Unicode char U+00BB (decimal 187)
    defining Unicode char U+00BF (decimal 191)
    defining Unicode char U+00C0 (decimal 192)
@@ -346,94 +344,50 @@ File: t1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
    defining Unicode char U+00FD (decimal 253)
    defining Unicode char U+00FE (decimal 254)
    defining Unicode char U+00FF (decimal 255)
-   defining Unicode char U+0100 (decimal 256)
-   defining Unicode char U+0101 (decimal 257)
    defining Unicode char U+0102 (decimal 258)
    defining Unicode char U+0103 (decimal 259)
    defining Unicode char U+0104 (decimal 260)
    defining Unicode char U+0105 (decimal 261)
    defining Unicode char U+0106 (decimal 262)
    defining Unicode char U+0107 (decimal 263)
-   defining Unicode char U+0108 (decimal 264)
-   defining Unicode char U+0109 (decimal 265)
-   defining Unicode char U+010A (decimal 266)
-   defining Unicode char U+010B (decimal 267)
    defining Unicode char U+010C (decimal 268)
    defining Unicode char U+010D (decimal 269)
    defining Unicode char U+010E (decimal 270)
    defining Unicode char U+010F (decimal 271)
    defining Unicode char U+0110 (decimal 272)
    defining Unicode char U+0111 (decimal 273)
-   defining Unicode char U+0112 (decimal 274)
-   defining Unicode char U+0113 (decimal 275)
-   defining Unicode char U+0114 (decimal 276)
-   defining Unicode char U+0115 (decimal 277)
-   defining Unicode char U+0116 (decimal 278)
-   defining Unicode char U+0117 (decimal 279)
    defining Unicode char U+0118 (decimal 280)
    defining Unicode char U+0119 (decimal 281)
    defining Unicode char U+011A (decimal 282)
    defining Unicode char U+011B (decimal 283)
-   defining Unicode char U+011C (decimal 284)
-   defining Unicode char U+011D (decimal 285)
    defining Unicode char U+011E (decimal 286)
    defining Unicode char U+011F (decimal 287)
-   defining Unicode char U+0120 (decimal 288)
-   defining Unicode char U+0121 (decimal 289)
-   defining Unicode char U+0122 (decimal 290)
-   defining Unicode char U+0123 (decimal 291)
-   defining Unicode char U+0124 (decimal 292)
-   defining Unicode char U+0125 (decimal 293)
-   defining Unicode char U+0128 (decimal 296)
-   defining Unicode char U+0129 (decimal 297)
-   defining Unicode char U+012A (decimal 298)
-   defining Unicode char U+012B (decimal 299)
-   defining Unicode char U+012C (decimal 300)
-   defining Unicode char U+012D (decimal 301)
-   defining Unicode char U+012E (decimal 302)
-   defining Unicode char U+012F (decimal 303)
    defining Unicode char U+0130 (decimal 304)
    defining Unicode char U+0131 (decimal 305)
    defining Unicode char U+0132 (decimal 306)
    defining Unicode char U+0133 (decimal 307)
-   defining Unicode char U+0134 (decimal 308)
-   defining Unicode char U+0135 (decimal 309)
-   defining Unicode char U+0136 (decimal 310)
-   defining Unicode char U+0137 (decimal 311)
    defining Unicode char U+0139 (decimal 313)
    defining Unicode char U+013A (decimal 314)
-   defining Unicode char U+013B (decimal 315)
-   defining Unicode char U+013C (decimal 316)
    defining Unicode char U+013D (decimal 317)
    defining Unicode char U+013E (decimal 318)
    defining Unicode char U+0141 (decimal 321)
    defining Unicode char U+0142 (decimal 322)
    defining Unicode char U+0143 (decimal 323)
    defining Unicode char U+0144 (decimal 324)
-   defining Unicode char U+0145 (decimal 325)
-   defining Unicode char U+0146 (decimal 326)
    defining Unicode char U+0147 (decimal 327)
    defining Unicode char U+0148 (decimal 328)
    defining Unicode char U+014A (decimal 330)
    defining Unicode char U+014B (decimal 331)
-   defining Unicode char U+014C (decimal 332)
-   defining Unicode char U+014D (decimal 333)
-   defining Unicode char U+014E (decimal 334)
-   defining Unicode char U+014F (decimal 335)
    defining Unicode char U+0150 (decimal 336)
    defining Unicode char U+0151 (decimal 337)
    defining Unicode char U+0152 (decimal 338)
    defining Unicode char U+0153 (decimal 339)
    defining Unicode char U+0154 (decimal 340)
    defining Unicode char U+0155 (decimal 341)
-   defining Unicode char U+0156 (decimal 342)
-   defining Unicode char U+0157 (decimal 343)
    defining Unicode char U+0158 (decimal 344)
    defining Unicode char U+0159 (decimal 345)
    defining Unicode char U+015A (decimal 346)
    defining Unicode char U+015B (decimal 347)
-   defining Unicode char U+015C (decimal 348)
-   defining Unicode char U+015D (decimal 349)
    defining Unicode char U+015E (decimal 350)
    defining Unicode char U+015F (decimal 351)
    defining Unicode char U+0160 (decimal 352)
@@ -442,22 +396,10 @@ File: t1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
    defining Unicode char U+0163 (decimal 355)
    defining Unicode char U+0164 (decimal 356)
    defining Unicode char U+0165 (decimal 357)
-   defining Unicode char U+0168 (decimal 360)
-   defining Unicode char U+0169 (decimal 361)
-   defining Unicode char U+016A (decimal 362)
-   defining Unicode char U+016B (decimal 363)
-   defining Unicode char U+016C (decimal 364)
-   defining Unicode char U+016D (decimal 365)
    defining Unicode char U+016E (decimal 366)
    defining Unicode char U+016F (decimal 367)
    defining Unicode char U+0170 (decimal 368)
    defining Unicode char U+0171 (decimal 369)
-   defining Unicode char U+0172 (decimal 370)
-   defining Unicode char U+0173 (decimal 371)
-   defining Unicode char U+0174 (decimal 372)
-   defining Unicode char U+0175 (decimal 373)
-   defining Unicode char U+0176 (decimal 374)
-   defining Unicode char U+0177 (decimal 375)
    defining Unicode char U+0178 (decimal 376)
    defining Unicode char U+0179 (decimal 377)
    defining Unicode char U+017A (decimal 378)
@@ -465,38 +407,9 @@ File: t1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
    defining Unicode char U+017C (decimal 380)
    defining Unicode char U+017D (decimal 381)
    defining Unicode char U+017E (decimal 382)
-   defining Unicode char U+01CD (decimal 461)
-   defining Unicode char U+01CE (decimal 462)
-   defining Unicode char U+01CF (decimal 463)
-   defining Unicode char U+01D0 (decimal 464)
-   defining Unicode char U+01D1 (decimal 465)
-   defining Unicode char U+01D2 (decimal 466)
-   defining Unicode char U+01D3 (decimal 467)
-   defining Unicode char U+01D4 (decimal 468)
-   defining Unicode char U+01E2 (decimal 482)
-   defining Unicode char U+01E3 (decimal 483)
-   defining Unicode char U+01E6 (decimal 486)
-   defining Unicode char U+01E7 (decimal 487)
-   defining Unicode char U+01E8 (decimal 488)
-   defining Unicode char U+01E9 (decimal 489)
-   defining Unicode char U+01EA (decimal 490)
-   defining Unicode char U+01EB (decimal 491)
-   defining Unicode char U+01F0 (decimal 496)
-   defining Unicode char U+01F4 (decimal 500)
-   defining Unicode char U+01F5 (decimal 501)
-   defining Unicode char U+0218 (decimal 536)
-   defining Unicode char U+0219 (decimal 537)
-   defining Unicode char U+021A (decimal 538)
-   defining Unicode char U+021B (decimal 539)
-   defining Unicode char U+1E02 (decimal 7682)
-   defining Unicode char U+1E03 (decimal 7683)
    defining Unicode char U+200C (decimal 8204)
-   defining Unicode char U+2010 (decimal 8208)
-   defining Unicode char U+2011 (decimal 8209)
-   defining Unicode char U+2012 (decimal 8210)
    defining Unicode char U+2013 (decimal 8211)
    defining Unicode char U+2014 (decimal 8212)
-   defining Unicode char U+2015 (decimal 8213)
    defining Unicode char U+2018 (decimal 8216)
    defining Unicode char U+2019 (decimal 8217)
    defining Unicode char U+201A (decimal 8218)
@@ -512,12 +425,10 @@ File: t1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-("G:\Programme\MikTeX 2.9\tex\latex\base\ot1enc.dfu"
-File: ot1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
-   defining Unicode char U+00A0 (decimal 160)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
+File: ot1enc.dfu 2014/09/29 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
-   defining Unicode char U+00AD (decimal 173)
    defining Unicode char U+00B8 (decimal 184)
    defining Unicode char U+00BF (decimal 191)
    defining Unicode char U+00C5 (decimal 197)
@@ -535,14 +446,6 @@ File: ot1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
    defining Unicode char U+0142 (decimal 322)
    defining Unicode char U+0152 (decimal 338)
    defining Unicode char U+0153 (decimal 339)
-   defining Unicode char U+0174 (decimal 372)
-   defining Unicode char U+0175 (decimal 373)
-   defining Unicode char U+0176 (decimal 374)
-   defining Unicode char U+0177 (decimal 375)
-   defining Unicode char U+0218 (decimal 536)
-   defining Unicode char U+0219 (decimal 537)
-   defining Unicode char U+021A (decimal 538)
-   defining Unicode char U+021B (decimal 539)
    defining Unicode char U+2013 (decimal 8211)
    defining Unicode char U+2014 (decimal 8212)
    defining Unicode char U+2018 (decimal 8216)
@@ -553,8 +456,8 @@ File: ot1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-("G:\Programme\MikTeX 2.9\tex\latex\base\omsenc.dfu"
-File: omsenc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
+File: omsenc.dfu 2014/09/29 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
    defining Unicode char U+00B7 (decimal 183)
@@ -569,9 +472,8 @@ Now handling font encoding U ...
 Now handling font encoding LY1 ...
 ... processing UTF-8 mapping file for font encoding LY1
 
-("G:\Programme\MikTeX 2.9\tex\latex\base\ly1enc.dfu"
-File: ly1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
-   defining Unicode char U+00A0 (decimal 160)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ly1enc.dfu"
+File: ly1enc.dfu 2014/09/29 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A2 (decimal 162)
    defining Unicode char U+00A3 (decimal 163)
@@ -581,7 +483,6 @@ File: ly1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00AA (decimal 170)
    defining Unicode char U+00AB (decimal 171)
-   defining Unicode char U+00AD (decimal 173)
    defining Unicode char U+00AE (decimal 174)
    defining Unicode char U+00B0 (decimal 176)
    defining Unicode char U+00B5 (decimal 181)
@@ -662,18 +563,10 @@ File: ly1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
    defining Unicode char U+0153 (decimal 339)
    defining Unicode char U+0160 (decimal 352)
    defining Unicode char U+0161 (decimal 353)
-   defining Unicode char U+0174 (decimal 372)
-   defining Unicode char U+0175 (decimal 373)
-   defining Unicode char U+0176 (decimal 374)
-   defining Unicode char U+0177 (decimal 375)
    defining Unicode char U+0178 (decimal 376)
    defining Unicode char U+017D (decimal 381)
    defining Unicode char U+017E (decimal 382)
    defining Unicode char U+0192 (decimal 402)
-   defining Unicode char U+0218 (decimal 536)
-   defining Unicode char U+0219 (decimal 537)
-   defining Unicode char U+021A (decimal 538)
-   defining Unicode char U+021B (decimal 539)
    defining Unicode char U+02C6 (decimal 710)
    defining Unicode char U+02DC (decimal 732)
    defining Unicode char U+2013 (decimal 8211)
@@ -700,16 +593,13 @@ File: ly1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\natbib\natbib.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip57
 \bibsep=\skip58
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count113
-)
-(paper.aux)
-\openout1 = `paper.aux'.
-
+) (paper.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
@@ -724,22 +614,22 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Checking defaults for LY1/ptm/m/n on input line 83.
 LaTeX Font Info:    Try loading font information for LY1+ptm on input line 83.
- (C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\ly1\ly1ptm.fd
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ly1\ly1ptm.fd"
 File: ly1ptm.fd 2001/02/01 font definitions for LY1/ptm using Berry names.
 )
 LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Try loading font information for T1+SourceSansPro-LF on inp
 ut line 83.
 
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\latex\sourcesanspro\t1sourcesan
-spro-lf.fd
-File: T1SourceSansPro-LF.fd 2016/12/03 (autoinst) Font definitions for T1/Sourc
+("C:\Program Files\MiKTeX 2.9\tex\latex\sourcesanspro\t1sourcesanspro-lf.fd"
+File: T1SourceSansPro-LF.fd 2014/07/28 (autoinst) Font definitions for T1/Sourc
 eSansPro-LF.
 )
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 83.
 
-(C:\Users\renato\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
 \scratchdimen=\dimen138
@@ -752,42 +642,6 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
 \MPnumerator=\count118
 \makeMPintoPDFobject=\count119
 \everyMPtoPDFconversion=\toks25
-) ("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
-Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-("G:\Programme\MikTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-("G:\Programme\MikTeX 2.9\tex\latex\oberdiek\grfext.sty"
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty"
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-))
-("G:\Programme\MikTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-("G:\Programme\MikTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 456.
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -878,12 +732,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 130--131
 
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 135.
 
-("G:\Programme\MikTeX 2.9\tex\latex\base\t1cmtt.fd"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ) [1
 
-{C:/Users/renato/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./bar.png>
- <./JASSS.png>]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./bar.png> <./JASSS.png>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
@@ -907,26 +761,26 @@ Package natbib Warning: Empty `thebibliography' environment on input line 10.
 
 ) [4] (paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5071 strings out of 493333
- 66646 string characters out of 3140915
- 146063 words of memory out of 3000000
- 8461 multiletter control sequences out of 15000+200000
- 160686 words of font info for 62 fonts, out of 3000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 39i,11n,45p,1374b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\renato\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
-knappen\ec\dpi600\ectt1000.pk>{C:/Users/renato/AppData/Roaming/MiKTeX/2.9/fonts
-/enc/dvips/sourcesanspro/a_5tbsmu.enc}{C:/Users/renato/AppData/Roaming/MiKTeX/2
-.9/fonts/enc/dvips/sourcesanspro/a_ggs4wk.enc}<C:/Users/renato/AppData/Roaming/
-MiKTeX/2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/ren
-ato/AppData/Roaming/MiKTeX/2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-It
-.pfb><C:/Users/renato/AppData/Roaming/MiKTeX/2.9/fonts/type1/adobe/sourcesanspr
-o/SourceSansPro-Regular.pfb><G:/Programme/MikTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb><G:/Programme/MikTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.p
-fb><G:/Programme/MikTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on paper.pdf (4 pages, 179170 bytes).
+ 4626 strings out of 493698
+ 59762 string characters out of 3144409
+ 135345 words of memory out of 3000000
+ 7837 multiletter control sequences out of 15000+200000
+ 160441 words of font info for 62 fonts, out of 3000000 for 9000
+ 1025 hyphenation exceptions out of 8191
+ 36i,11n,45p,1372b,344s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-sup
+er-t1.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a_5tbsmu.e
+nc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a_ggs4wk.enc}<C:/
+Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-
+Regular.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on paper.pdf (4 pages, 198031 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
+ 51 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

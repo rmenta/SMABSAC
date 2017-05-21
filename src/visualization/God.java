@@ -31,16 +31,17 @@ public class God extends JPanel {
 	// Properties of the model
 	private final static double PROXIMITY = 0.95;
 	private final static int COST_OF_LIFE = 1;
-	private final static int STARTING_CAPITAL = 255;
+	private final static int STARTING_CAPITAL = 500;
 	private static int[][] parcelCount = new int[WIDTH/TILE_SIZE][HEIGHT/TILE_SIZE];
 	private static int MAX_AGE = 1000;
 	private static int EARLIEST_BIRTH_AGE = 500;
 	private static int BIRTH_PERIOD = 20;
 	
 	// Interesting factors
-	private final static double MERCIFUL_GOD_FACTOR = 1;	// 1 -> total of distribution = total need, < 1 -> dist < need
-	private final static double WILLINGNESS_TO_TRADE = 1;	// chance that a trade even takes place at all (independent of rest)
-	private final static double GOLD_DIG_FACTOR = 1;		// 0: Only trade with people you like, 1: Only trade with poor people
+	private final static double MERCIFUL_GOD_FACTOR = 1;			// 1 -> total of distribution = total need, < 1 -> dist < need
+	private final static double WILLINGNESS_TO_TRADE = 0.7;			// chance that a trade even takes place at all (independent of rest)
+	private final static double GOLD_DIG_FACTOR = 0.00;				// 0: Only trade with people you like, 1: Only trade with poor people
+	private final static double CIRCLE_OF_LIFE_FACTOR = 0.0001;		// possiility for a baby/death
 
 	// Graphs
 	private Chart livingAgents;
@@ -70,6 +71,7 @@ public class God extends JPanel {
 		wealthNeighbours = new Histogram("Wealth compared to amount of neighbours", "Neighbours", "Wealth");
 		neighboursPerAgent = new Histogram("Neighbours per Agent", "Neighbours", "Agents");
 		totalWealth.setMaxSize(0);
+		livingAgents.setMaxSize(5000);
 
 		// Add graphs to list
 		chartContainer.addChart(livingAgents);
@@ -147,7 +149,7 @@ public class God extends JPanel {
 		int i = 0;
 		while (true) {
 			oli.rule();
-			 //if(i%20==0)
+			 if(i%1==0)
 				oli.paintImmediately(0, 0, WIDTH + PANEL_WIDTH, HEIGHT);
 			i++;
 
@@ -198,12 +200,15 @@ public class God extends JPanel {
 			double salary = factor * distFunction(xPos, yPos, tickCounter) / (double)numberInParcel;
 			agent.paymentTime(salary - COST_OF_LIFE);
 
-			double probabilityToDie = 0.0001;
-
-			if (agent.requestResource() < 0 || r.nextDouble() < probabilityToDie) {
+			if (agent.requestResource() < 0 || r.nextDouble() < CIRCLE_OF_LIFE_FACTOR) {
 				agent.die();
 				parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE]--;
 				toRemove.add(agent);
+				if(agent.requestResource() < 0){
+					System.out.println("Agent " + agent.id + " has passed away (resource < 0).");
+				}else{
+					System.out.println("Agent " + agent.id + " has passed away (tough luck).");
+				}
 			} else{
 				totalWealthCounter += agent.requestResource();
 			}
@@ -212,7 +217,6 @@ public class God extends JPanel {
 		// delete dead agents and mark edges to be removed
 		LinkedList<Edge> edgesToRemove = new LinkedList<>();
 		for (Agent a : toRemove) {
-			System.out.println("Agent " + a.id + " has passed away.");
 			agents.remove(a);
 			for (Edge e : edges) {
 				if (e.a1 == a || e.a2 == a) {
@@ -275,7 +279,7 @@ public class God extends JPanel {
 		// MAKE BABIES :D
 		LinkedList<Agent> childrenToAdd = new LinkedList<>();
 		for(Agent a : agents){
-			if(a.age >= EARLIEST_BIRTH_AGE && a.age <= EARLIEST_BIRTH_AGE + BIRTH_PERIOD){
+			if(r.nextDouble() < 2*CIRCLE_OF_LIFE_FACTOR){
 				Agent child = new Agent((int)a.requestResource()/2, WILLINGNESS_TO_TRADE, GOLD_DIG_FACTOR, a.posX, a.posY, 0);
 				a.paymentTime(-a.requestResource()/2);
 				childrenToAdd.add(child);
@@ -377,7 +381,7 @@ public class God extends JPanel {
 			g.fillOval(a.posX - RADIUS, a.posY - RADIUS, 2*RADIUS, 2*RADIUS);
 			g.setColor(Color.black);
 			if(showInfo){
-				g.drawString("   ID: " + a.id + ", " + Double.toString(a.requestResource()).substring(0, 6), a.posX, a.posY);
+				g.drawString("   ID: " + a.id + ", " + Double.toString(a.requestResource()).substring(0, Math.min(6, Double.toString(a.requestResource()).length())), a.posX, a.posY);
 			}
 		}
 
@@ -405,12 +409,12 @@ public class God extends JPanel {
 		double x = ((double)xPos / WIDTH) * 6;
 		double y = ((double)yPos / HEIGHT) * 6;
 		double aux0 = Math.sin(x*Math.cos(x) + (double)tickCounter/10.) * Math.cos(y * Math.sin(x) );
-		double aux1 = Math.sin(x + (double)tickCounter/500) * Math.cos(y + (double)tickCounter/500);
-		double aux2 = Math.sin(x) * Math.cos(y);
-		double aux3 = Math.sin(x * Math.sin(y) + (double)tickCounter/10) * Math.cos(y + (double)tickCounter/30);
+		double dynamic = Math.sin(x + (double)tickCounter/500) * Math.cos(y + (double)tickCounter/500);
+		double staticc = Math.sin(x) * Math.cos(y);
+		double hard = Math.sin(x/5 * Math.sin(y) + (double)tickCounter/1000) * Math.cos(y/2 + (double)tickCounter/4000);
 		Random r = new Random();
-		double aux4 = r.nextDouble();
-		return (aux1 + 1)/2;
+		double random = r.nextDouble();
+		return (staticc + 1)/2;
 	}
 	
 	private double getDistance(int x1, int y1, int x2, int y2) {

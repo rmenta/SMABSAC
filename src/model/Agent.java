@@ -78,8 +78,22 @@ public class Agent{
 		// do movement stuff
 		Random r =  new Random();
 		lastPartner = null;
-		posX = Math.abs((posX + (int) ((r.nextDouble()-0.5)*4))) % 880;
-		posY = Math.abs((posY + (int) ((r.nextDouble()-0.5)*4))) % 800;
+		//posX = Math.abs((posX + (int) ((r.nextDouble()-0.5)*10))) % 880;
+		//posY = Math.abs((posY + (int) ((r.nextDouble()-0.5)*10))) % 800;
+		
+		int randomX = (int) ((r.nextDouble()-0.5)*10);
+		int randomY = (int) ((r.nextDouble()-0.5)*10);
+		if(posX + randomX <= 0 || posX + randomX >= 880){
+			posX -= randomX;
+		}else{
+			posX += randomX;
+		}
+		if(posY + randomY <= 0 || posY + randomY >= 800){
+			posY -= randomY;
+		}else{
+			posY += randomY;
+		}
+		
 		if(tradingRequests.size() == 0){
 			return;
 		}
@@ -125,8 +139,8 @@ public class Agent{
 		double diffY = (double) theChosenOne.posY - this.posY;
 		double distanceBetweenAgents = Math.sqrt((diffX*diffX) + (diffY*diffY));
 
-		theChosenOne.posX = theChosenOne.posX + (int)((((double)this.posX - (double)theChosenOne.posX) / distanceBetweenAgents) * 10);
-		theChosenOne.posY = theChosenOne.posY + (int)((((double)this.posY - (double)theChosenOne.posY) / distanceBetweenAgents) * 10);
+		theChosenOne.posX = theChosenOne.posX + Math.min((int)((((double)this.posX - (double)theChosenOne.posX) / distanceBetweenAgents) * 10), -(int) diffX);
+		theChosenOne.posY = theChosenOne.posY + Math.min((int)((((double)this.posY - (double)theChosenOne.posY) / distanceBetweenAgents) * 10), -(int) diffY);
 
 
 		// Update sympathy
