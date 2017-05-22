@@ -40,14 +40,14 @@ public class God extends JPanel {
 	// Interesting factors
 	private final static double MERCIFUL_GOD_FACTOR = 1;			// 1 -> total of distribution = total need, < 1 -> dist < need
 	private final static double WILLINGNESS_TO_TRADE = 0.7;			// chance that a trade even takes place at all (independent of rest)
-	private final static double GOLD_DIG_FACTOR = 0.00;				// 0: Only trade with people you like, 1: Only trade with poor people
+	private final static double GOLD_DIG_FACTOR = 1;				// 0: Only trade with people you like, 1: Only trade with poor people
 	private final static double CIRCLE_OF_LIFE_FACTOR = 0.0001;		// possiility for a baby/death
 
 	// Graphs
 	private Chart livingAgents;
 	private Chart totalWealth;
 	private Chart wealthNeighbours;
-	private Chart neighboursPerAgent;
+	//private Chart neighboursPerAgent;
 
 	// Bookkeeping
 	private ChartContainer chartContainer = new ChartContainer(WIDTH + 10, 100, PANEL_WIDTH - 80, 75);
@@ -69,14 +69,15 @@ public class God extends JPanel {
 		livingAgents = new XYChart("Number of living agents", "Time", "Living Agents");
 		totalWealth = new XYChart("Wealth of all living agents", "Time", "Total Wealth");
 		wealthNeighbours = new Histogram("Wealth compared to amount of neighbours", "Neighbours", "Wealth");
-		neighboursPerAgent = new Histogram("Neighbours per Agent", "Neighbours", "Agents");
-		totalWealth.setMaxSize(0);
-		livingAgents.setMaxSize(5000);
+		//neighboursPerAgent = new Histogram("Neighbours per Agent", "Neighbours", "Agents");
+		totalWealth.setMaxSize(1000);
+		livingAgents.setMaxSize(1000);
 
 		// Add graphs to list
 		chartContainer.addChart(livingAgents);
 		chartContainer.addChart(totalWealth);
-		chartContainer.addChart(wealthNeighbours);chartContainer.addChart(neighboursPerAgent);
+		chartContainer.addChart(wealthNeighbours);
+		//chartContainer.addChart(neighboursPerAgent);
 
         // Create agents at random locations
         Random r = new Random();
@@ -200,7 +201,7 @@ public class God extends JPanel {
 			double salary = factor * distFunction(xPos, yPos, tickCounter) / (double)numberInParcel;
 			agent.paymentTime(salary - COST_OF_LIFE);
 
-			if (agent.requestResource() < 0 || r.nextDouble() < CIRCLE_OF_LIFE_FACTOR) {
+			if (agent.requestResource() < 0){// || r.nextDouble() < CIRCLE_OF_LIFE_FACTOR) {
 				agent.die();
 				parcelCount[agent.posX / TILE_SIZE][agent.posY / TILE_SIZE]--;
 				toRemove.add(agent);
@@ -331,7 +332,7 @@ public class God extends JPanel {
 		livingAgents.addVal(tickCounter, agents.size());
 		totalWealth.addVal(tickCounter, totalWealthCounter);
 		wealthNeighbours.updateValues(neighboursAxis, wealthForGraph);
-		neighboursPerAgent.updateValues(neighboursAxis, neighboursForGraph);
+		//neighboursPerAgent.updateValues(neighboursAxis, neighboursForGraph);
 
 	}
 
@@ -342,9 +343,15 @@ public class God extends JPanel {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		// Draw distribution in background
+		Color distHot = new Color(255, 255, 50);
+		Color distCold = new Color(255, 50, 50);
 		for(int i = 0; i < WIDTH; i+=TILE_SIZE){
 			for(int j = 0; j < HEIGHT; j+=TILE_SIZE){
-				g.setColor(new Color(255, (int)(255 * distFunction(i + TILE_SIZE / 2, j + TILE_SIZE / 2, tickCounter)), 0));
+				int red = distCold.getRed() + (int)((distHot.getRed() - distCold.getRed()) *distFunction(i + TILE_SIZE / 2, j + TILE_SIZE / 2, tickCounter));
+				int green = distCold.getGreen() + (int)((distHot.getGreen() - distCold.getGreen()) *distFunction(i + TILE_SIZE / 2, j + TILE_SIZE / 2, tickCounter));
+				int blue = distCold.getBlue() + (int)((distHot.getBlue() - distCold.getBlue()) *distFunction(i + TILE_SIZE / 2, j + TILE_SIZE / 2, tickCounter));
+				g.setColor(new Color(red, green, blue));
+				//g.setColor(new Color(255, 100 + (int)(155 * distFunction(i + TILE_SIZE / 2, j + TILE_SIZE / 2, tickCounter)), 0));
 				g.fillRect(i, j, TILE_SIZE, TILE_SIZE);
 				
 				g.setColor(Color.black);
@@ -413,7 +420,7 @@ public class God extends JPanel {
 		double staticc = Math.sin(x) * Math.cos(y);
 		double hard = Math.sin(x/5 * Math.sin(y) + (double)tickCounter/1000) * Math.cos(y/2 + (double)tickCounter/4000);
 		Random r = new Random();
-		double random = r.nextDouble();
+		double stat = r.nextDouble();
 		return (staticc + 1)/2;
 	}
 	
