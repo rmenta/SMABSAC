@@ -5,10 +5,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 
-/**
- * Created by God on 23.03.2017.
- */
-
 abstract public class Chart {
 	// General properties of the graph
 	private String graphName;
@@ -18,10 +14,8 @@ abstract public class Chart {
     // Representation variables
 	private int maxSize;
 	private int tickWidth = 5, tickHeight = 5;
-    
-    // Customizable features
-    private boolean showTicksX = true;
-    private boolean showTicksY = true;
+
+	private boolean showTicksY = true;
     private boolean showLabelX = true;
     private Font valuesFont = new Font(Font.SANS_SERIF, 0, 12);
     private Font descriptionFont = new Font(Font.SANS_SERIF, 0, 12);
@@ -81,6 +75,7 @@ abstract public class Chart {
 			// Draw horizontal ticks and write value below
 			if(i%intervalX == 0){
 				g.drawString(str, colPosX + (int)(colWidth/2 - strWidth(g, str) / 2), colPosY + 5 + (int)(1*strHeight(g)));
+				boolean showTicksX = true;
 				if(showTicksX){drawTickHor(g, colPosX + (int)(colWidth/2),  colPosY);}
 			}
 		}
