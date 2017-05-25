@@ -35,15 +35,13 @@
 \reviewcopy{false} 
 
 \author[1]{Manuel Bröchin}
-\affil[1]{Head of the SMABSAC Boiz}
+\affil[1]{Swiss Federal Institute of Technology in Zurich, Rämistr. 101, CH-8092 Zürich, Switzerland}
 
 % Subsequent author should be included using the following template. You can add more in case of need, just remember to appropriately set the corresponding number.  Please check the the authblk package documentation  in case of doubts
 
-\author[2]{Renato Menta}
-\affil[2]{Second Hand}
+\author[1]{Oliver Blaser}
 
-\author[3]{Oliver Blaser}
-\affil[3]{hallo}
+\author[1]{Renato Menta}
 
 %\author[4]{fourth author here}
 %\affil[4]{fourth of the third author here}
@@ -88,11 +86,11 @@
 % Abstract and keywords
 
 \begin{abstract}
-Add your abstract here
+Our paper presents a new way of modelling mass migration based on an generative-agent-based trade simulation. We abstract the behaviour of social groups to a simple trading pattern following a few basic rules with which we can successfully simulate migration of populations to areas which are more beneficial to them. We investigated the influence of different factors, such as resource shortage and excess, as well as trading patterns which rely on social connections only, contrasting to individual economic interests, ignoring all social constructs. The emerging migration patterns based on the collective behaviour give us an explanation on how and why people in ancient times migrated, as well as on how we might choose our living places in the future. We show that mass migration can be modelled with comparatively simple rules and that we can better understand the tendencies which influenced people in the past, and prepare for future scenarios.
 \end{abstract}
 
 \begin{keywords}
-Add your keywords here separated by commas
+Mass Migration, Trade Simulation, Generative Agent Based Model, Collective Behaviour
 \end{keywords}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,9 +115,12 @@ Add your keywords here separated by commas
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Abstract}
-
 \section{Introduction}
+Increasing migration pressures our society into adapting quickly and finding appropriate solutions to deal with those sudden changes. The development of communication and social networks contribute to information being shared quickly over large areas, resulting in more people being able to compare their situation to others and trying to balance out those differences by moving to areas with higher benefits. The scientific work concerning migration has been dominated by the gravity model, which is, unlike our simulation, based on observation and is thus biased. The spatial interaction, on which our simulation is built, has been modelled with different approaches than the gravity model, though none of which used trade transactions as working base.
+
+This new approach allows us to compare different migration scenarios based solely on trading. This gives a rough, yet information rich simulation with which we can anticipate the general behaviour of big populations in critical scenarios. These scenarios include, but are not limited to shortage of vital resources such as water or escape from political persecution. It depends on how the resources used in our model are interpreted.
+
+We use a generative agent-based model, in which the agents, connected by a network, are placed on a spatial grid on which they can move around according to their rules. Trades are one-sided and consist of one agent giving resources to another, which will make the receiving agent move towards the other one. The grid is divided into multiple parcels, on which the resources are distributed according to a distribution function. To further describe our model, we use the ODD protocol\footnote{Volker Grimm et al. "A standard protocol for describing individual-based and agent-based models"}.
 
 \section{Model}
 \subsection{Purpose}

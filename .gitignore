@@ -8,6 +8,11 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+# LaTeX auxiliary files
+*.aux
+*.log
+*.synctex.gz
+
 # Windows Installer files
 *.cab
 *.msi
