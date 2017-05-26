@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.6.16)  21 MAY 2017 23:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.6.16)  26 MAY 2017 13:55
 entering extended mode
 **paper.tex
 (paper.tex
@@ -600,34 +600,34 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count113
 ) (paper.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for LY1/ptm/m/n on input line 83.
-LaTeX Font Info:    Try loading font information for LY1+ptm on input line 83.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for LY1/ptm/m/n on input line 88.
+LaTeX Font Info:    Try loading font information for LY1+ptm on input line 88.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ly1\ly1ptm.fd"
 File: ly1ptm.fd 2001/02/01 font definitions for LY1/ptm using Berry names.
 )
-LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    ... okay on input line 88.
 LaTeX Font Info:    Try loading font information for T1+SourceSansPro-LF on inp
-ut line 83.
+ut line 88.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\sourcesanspro\t1sourcesanspro-lf.fd"
 File: T1SourceSansPro-LF.fd 2014/07/28 (autoinst) Font definitions for T1/Sourc
 eSansPro-LF.
 )
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 83.
+(Font)              scaled to size 10.0pt on input line 88.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -680,107 +680,114 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
 <bar.png, id=1, 542.025pt x 2.0075pt>
 File: bar.png Graphic file (type png)
  <use bar.png>
-Package pdftex.def Info: bar.png used on input line 84.
+Package pdftex.def Info: bar.png used on input line 89.
 (pdftex.def)             Requested size: 455.24411pt x 1.68613pt.
 
 <JASSS.png, id=3, 189.70876pt x 76.285pt>
 File: JASSS.png Graphic file (type png)
  <use JASSS.png>
-Package pdftex.def Info: JASSS.png used on input line 84.
+Package pdftex.def Info: JASSS.png used on input line 89.
 (pdftex.def)             Requested size: 113.81102pt x 45.76552pt.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 84.
+(Font)              scaled to size 17.28pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 84.
+(Font)              scaled to size 17.28pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 84.
+(Font)              scaled to size 12.0pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 84.
+(Font)              scaled to size 8.0pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 84.
+(Font)              scaled to size 8.0pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 84.
+(Font)              scaled to size 12.0pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 84.
+(Font)              scaled to size 9.0pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 84.
+(Font)              scaled to size 9.0pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/it' will be
-(Font)              scaled to size 6.0pt on input line 84.
+(Font)              scaled to size 6.0pt on input line 89.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 84.
+(Font)              scaled to size 6.0pt on input line 89.
 File: bar.png Graphic file (type png)
  <use bar.png>
-Package pdftex.def Info: bar.png used on input line 84.
+Package pdftex.def Info: bar.png used on input line 89.
 (pdftex.def)             Requested size: 455.24411pt x 1.68613pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
 
  []
 
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 91.
+(Font)              scaled to size 10.0pt on input line 96.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 120.
+(Font)              scaled to size 14.4pt on input line 125.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 120.
+(Font)              scaled to size 14.4pt on input line 125.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 126.
-
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
-
- []
-
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 135.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [1
+(Font)              scaled to size 7.0pt on input line 130.
+[1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./bar.png> <./JASSS.png>]
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 5.0pt on input line 158.
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Overfull \hbox (0.96764pt too wide) in paragraph at lines 155--156
+[]\T1/SourceSansPro-LF/m/n/10 Percentage rep-re-sent-ing the chance that an age
+nt ac-tu-ally makes a trade
+ []
+
+LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/it' will be
+(Font)              scaled to size 10.0pt on input line 160.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
+(Font)              scaled to size 5.0pt on input line 160.
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
 
  []
 
 [2]
-Overfull \hbox (0.40599pt too wide) in paragraph at lines 172--173
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+
+Overfull \hbox (0.40599pt too wide) in paragraph at lines 204--205
 [][] \T1/SourceSansPro-LF/m/n/10 Af-ter all the trades have been com-pleted the
  agents will up-date their po-si-tion ac-cord-ing to the fol-low-ing schema: 
  []
 
-[3] (paper.bbl
+[3] [4] [5] (paper.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 10.
 
-) [4] (paper.aux) ) 
+) [6] (paper.aux) ) 
 Here is how much of TeX's memory you used:
- 4626 strings out of 493698
- 59762 string characters out of 3144409
- 135345 words of memory out of 3000000
- 7837 multiletter control sequences out of 15000+200000
- 160441 words of font info for 62 fonts, out of 3000000 for 9000
+ 4622 strings out of 493698
+ 59333 string characters out of 3144409
+ 139586 words of memory out of 3000000
+ 7835 multiletter control sequences out of 15000+200000
+ 182918 words of font info for 66 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 36i,11n,45p,1372b,344s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-sup
-er-t1.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a_5tbsmu.e
-nc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a_ggs4wk.enc}<C:/
-Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-
-Regular.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on paper.pdf (4 pages, 198031 bytes).
+ 36i,11n,45p,1682b,332s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a
+_5tbsmu.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a_ggs4wk
+.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro
+-Bold.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSa
+nsPro-It.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/Sourc
+eSansPro-Regular.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmti7.pfb>
+Output written on paper.pdf (6 pages, 241951 bytes).
 PDF statistics:
- 51 PDF objects out of 1000 (max. 8388607)
+ 72 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
