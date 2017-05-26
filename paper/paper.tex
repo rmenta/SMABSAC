@@ -29,7 +29,7 @@
 
 % title, authors and affiliations	
 
-\title{Spatial Graph-Based Social Trade\\ Transaction Simulation}
+\title{Modelling Mass Migration based on Spatial\\ Generative Agent-Based Trade Simulation}
 
 %All authors should be included in the submission. To anonymise the submission, set to 'true' the \reviewcopy command below. However, before submitting  you can check that all the informations you entered are correct by temporarily setting it to 'false'. Please remember to set it back to 'true' before the submission.
 \reviewcopy{false} 
@@ -93,7 +93,7 @@
 % Abstract and keywords
 
 \begin{abstract}
-Our paper presents a new way of modelling mass migration based on an generative-agent-based trade simulation. We abstract the behaviour of social groups to a simple trading pattern following a few basic rules with which we can successfully simulate migration of populations to areas which are more beneficial to them. We investigated the influence of different factors, such as resource shortage and excess, as well as trading patterns which rely on social connections only, contrasting to individual economic interests, ignoring all social constructs. The emerging migration patterns based on the collective behaviour give us an explanation on how and why people in ancient times migrated, as well as on how we might choose our living places in the future. We show that mass migration can be modelled with comparatively simple rules and that we can better understand the tendencies which influenced people in the past, and prepare for future scenarios.
+Our paper presents a new way of modelling mass migration based on a generative-agent-based trade simulation. We abstract the behaviour of social groups to a simple trading pattern following a few basic rules with which we can successfully simulate migration of populations to areas which are more beneficial to them. We investigated the influence of different factors, such as resource shortage and excess, as well as trading patterns which rely on social connections only, contrasting to individual economic interests, ignoring all social constructs. The emerging migration patterns based on the collective behaviour give us an explanation on how and why people in ancient times migrated, as well as on how we might choose our living places in the future. We show that mass migration can be modelled with comparatively simple rules and that we can better understand the tendencies which influenced people in the past, and prepare for future scenarios.
 \end{abstract}
 
 \begin{keywords}
@@ -131,7 +131,7 @@ We use a generative agent-based model, in which the agents, connected by a netwo
 
 \section{Model}
 \subsection{Purpose}
-The start of our investigation is the question of how much influence social behaviour and social structure have on the success of a civilization of humans. We chose to use the action of trading as condensate of all action. This is of course an underapproximation of all actions a human takes. Real humans have a multitude of motives such as health, love, happiness and many more. Nevertheless we follow the tradition of assuming a homo economicus who always tries to maximize utility or profit\footnote{Rittenberg and Trigarthen. "Chapter 6". Principles of Microeconomics}. As social behaviour we define the preferences someone has towards his peers: if he has the choice between two individuals as trading partners, which one does he prefer and what factors help him make his decision? Is he utalitarian and as such tries to maximize the utility of his actions? Or is he egoist and tries to maximize his own benefit? We model the social structure twofold: humans have logical connections corresponding to relations and physical connections in the form of their position on the map. We will explain further why we think that this is a useful approximation of a human civilization in the section about Design Concepts. With these abstractions our model allows testing of what kind of social behaviour and structure is most successful.
+The start of our investigation is the question of how much influence social behaviour and social structure have on the success of a civilization of humans. We chose to use the action of trading as condensate of all action. This is of course an under-approximation of all actions a human takes. Real humans have a multitude of motives such as health, love, happiness and many more. Nevertheless we follow the tradition of assuming a homo economicus who always tries to maximize utility or profit\footnote{Rittenberg and Trigarthen. "Chapter 6". Principles of Microeconomics}. As social behaviour we define the preferences someone has towards his peers: if he has the choice between two individuals as trading partners, which one does he prefer and what factors help him make his decision? Is he utalitarian and as such tries to maximize the utility of his actions? Or is he egoist and tries to maximize his own benefit? We model the social structure twofold: humans have logical connections corresponding to relations and physical connections in the form of their position on the map. We will explain further why we think that this is a useful approximation of a human civilization in the section about Design Concepts. With these abstractions our model allows testing of what kind of social behaviour and structure is most successful.
 
 
 \subsection{Entities, state variables, and scales}
@@ -198,7 +198,15 @@ Our simulation works with synchronous updates (ticks), meaning all agents do the
 	
 	
 \subsubsection{Trade transaction}
-	 Now all agents can view the list of their neighbours that have proposed a trade with them. The individual willingness-to-trade factor decides with what probability an agent considers accepting a trade in each tick. If an agent decides to accept a trade he finds a best match for a trading partner with the same formula we already used above. A trade causes the sympathy of the giving agent towards the receiving agent to sink by 1, and conversely for the receiving agent towards the giving agent to rise by 2. This mechanism ensures that frequent interactions between a pair of agents results in a strengthened relationship.\\
+	 Now all agents can view the list of their neighbours that have proposed a trade with them. The individual willingness-to-trade factor decides with what probability an agent considers accepting a trade in each tick. If an agent decides to accept a trade he finds a best match for a trading partner with the same formula we already used above. A trade causes the sympathy of the giving agent towards the receiving agent to sink by 1, and conversely for the receiving agent towards the giving agent to rise by 2. This mechanism ensures that frequent interactions between a pair of agents results in a strengthened relationship:
+	 \begin{equation}
+	 	\lim_{n \to \infty} n \cdot (p\cdot 2 - (1 - p)\cdot 1) = \lim_{n \to \infty} n \cdot (3\cdot p - 1) = \begin{cases}
+	 	= \infty,\quad &\text{if $p > \frac{1}{3}$}\\
+	 		= 0, &\text{if $p = \frac{1}{3}$}\\
+	 		= -\infty, &\text{if $p < \frac{1}{3}$}
+	 	\end{cases}
+	 \end{equation}
+	 where $p$ denotes the ratio of mutual trading. This means, that if agent $A$ does not trade more than twice as often with agent $B$ than the other way around, their respective sympathy will increase linearly over time.
 
 \subsubsection{Agent movements}
 		After all the trades have been completed the agents will update their position according to the following schema:

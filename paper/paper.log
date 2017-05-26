@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.6.16)  26 MAY 2017 13:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.6.16)  26 MAY 2017 14:28
 entering extended mode
 **paper.tex
 (paper.tex
@@ -749,29 +749,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 171--172
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
-
- []
-
-
-Overfull \hbox (0.40599pt too wide) in paragraph at lines 204--205
+Overfull \hbox (0.40599pt too wide) in paragraph at lines 212--213
 [][] \T1/SourceSansPro-LF/m/n/10 Af-ter all the trades have been com-pleted the
  agents will up-date their po-si-tion ac-cord-ing to the fol-low-ing schema: 
  []
 
-[3] [4] [5] (paper.bbl
+[3] [4] [5] (paper.bbl [6]
 
 Package natbib Warning: Empty `thebibliography' environment on input line 10.
 
-) [6] (paper.aux) ) 
+) [7] (paper.aux) ) 
 Here is how much of TeX's memory you used:
  4622 strings out of 493698
  59333 string characters out of 3144409
- 139586 words of memory out of 3000000
+ 137612 words of memory out of 3000000
  7835 multiletter control sequences out of 15000+200000
  182918 words of font info for 66 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 36i,11n,45p,1682b,332s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,12n,45p,1682b,362s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a
 _5tbsmu.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a_ggs4wk
 .enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro
@@ -781,13 +776,14 @@ eSansPro-Regular.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmti7.pfb>
-Output written on paper.pdf (6 pages, 241951 bytes).
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmti7.pfb>
+Output written on paper.pdf (7 pages, 254240 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
+ 81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
