@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.4.2)  28 MAY 2017 14:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.4.2)  28 MAY 2017 15:42
 entering extended mode
 **./paper.tex
 (paper.tex
@@ -834,22 +834,8 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 90.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
 (Font)              scaled to size 17.28pt on input line 90.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 90.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 90.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 90.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 90.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 90.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 90.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/it' will be
-(Font)              scaled to size 6.0pt on input line 90.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 90.
+(Font)              scaled to size 10.0pt on input line 90.
 File: bar.png Graphic file (type png)
  <use bar.png>
 Package pdftex.def Info: bar.png used on input line 90.
@@ -865,6 +851,10 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
 (Font)              scaled to size 14.4pt on input line 126.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
 (Font)              scaled to size 14.4pt on input line 126.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
+(Font)              scaled to size 12.0pt on input line 134.
+LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/b/n' will be
+(Font)              scaled to size 12.0pt on input line 134.
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./bar.png> <./JASSS.png>]
@@ -879,8 +869,6 @@ Overfull \hbox (0.96764pt too wide) in paragraph at lines 156--157
 nt ac-tu-ally makes a trade
  []
 
-LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 161.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
 (Font)              scaled to size 7.0pt on input line 161.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-LF/m/n' will be
@@ -896,33 +884,39 @@ Overfull \hbox (0.40599pt too wide) in paragraph at lines 218--219
  agents will up-date their po-si-tion ac-cord-ing to the fol-low-ing schema: 
  []
 
-[3] [4] [5] [6] (paper.bbl) [7] (paper.aux) ) 
+[3] [4] [5] [6] (paper.bbl [7]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 72.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)) [8] (paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5093 strings out of 493335
- 66253 string characters out of 3139258
- 150017 words of memory out of 3000000
- 8476 multiletter control sequences out of 15000+200000
- 186358 words of font info for 77 fonts, out of 3000000 for 9000
+ 5088 strings out of 493335
+ 66515 string characters out of 3139258
+ 150155 words of memory out of 3000000
+ 8484 multiletter control sequences out of 15000+200000
+ 128511 words of font info for 52 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,12n,45p,1582b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts
-/enc/dvips/sourcesanspro/a_5tbsmu.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dv
-ips/sourcesanspro/a_ggs4wk.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/s
-ourcesanspro/SourceSansPro-Bold.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/ad
-obe/sourcesanspro/SourceSansPro-It.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmti7.pfb>
-Output written on paper.pdf (7 pages, 265695 bytes).
+ 38i,12n,45p,1582b,349s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-su
+per-t1.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a_ggs4wk.
+enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/sourcesanspro/a_5tbsmu.enc}<C:
+/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro-It
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/adobe/sourcesanspro/SourceSansPro
+-Regular.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti
+10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+ti7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on paper.pdf (8 pages, 297029 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
