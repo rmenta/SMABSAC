@@ -161,7 +161,7 @@ Static variables:
 		\end{equation*}
 		If the value is close to 0, the agent will choose a partner which he likes, disregarding the amount of resources this potential partner has. If the value is close to 1, the agent will choose a partner which has lots of resources, disregarding how much he likes him.
 
-	\item[circe-of-life-factor ($\clf$):]
+	\item[circle-of-life-factor ($\clf$):]
 		Percentage representing the chance that an agent dies or spawns another agent (representing sexual reproduction) in any given iteration independent of other factors or variables.
 		
 	\item[Cost of Life ($\col$):]
@@ -262,34 +262,34 @@ The first and second movement together ensure collective learning in such that a
 	
 
 \subsubsection{Emergence}
-	we expect the agents to adapt to the environment. How well the agents will be able to adapt will depend on the indipendent variables.
+	The agents are able to adapt to their environment on their own without influence from the outside. They do this by moving to more beneficial locations on the grid, which they then start to cluster around trying to cover it up as good as possible. This behaviour, as it is not directly modelled, emerges from the small set of rules on which the agents act upon. How good the agents adapt to their environment depends on the situation and on the independent variables.
 
 \subsubsection{Adaptation}
-	The agents adapt themselves to the current situation by moving around on the grid. Their basic instinct is not to move to a place where they get less resources than before. This means they explicitly seek to increase their measure of success, namely the amount of resources they possess.
+	The agents adapt themselves to the current situation by moving around on the grid. Their basic instinct is not to move to a place where they get less resources than before. This means they explicitly seek to increase their measure of success, namely the amount of resources they possess. This leads to a large-scale migration pattern, in which the agents cluster around places on the grid which yield more benefit.
 
 \subsubsection{Objectives}
-	implicit objective is survival. we don't encode any behaviour for this though since it is one of our goals to see what strategies lead to better survival rates than others. Explicit objective is improving one's position on the grid which is done according to the rules described in section process overview. Also agents want to maximize the wealth of their most deserving neighbour without compromising their own wealth too much.
+	Th explicit objective of our agents is to accumulate as many resources as possible. To achieve this goal, the agents move around the grid and trade with each other, thus distributing the resources more evenly. From this behaviour, the implicit objective of survival emerges. Neither of those objectives are implemented directly, but rather emerge from the rules the agents follow.
 
 \subsubsection{Learning}
-	learning happens collectively: an agent accepting a trade signals to the receiving agent that the position of the giving agent is superior to his. The movement the receiving agent then takes is an attempt to improve his own position on the grid. This way trading acts as a kind of communication between agents as it does in the real world. Money flowing from urban to rural areas for example often leads to a flow of people from rural to urban areas \footnote{Davis, Kingsley. "The Urbanization of the Human Population"}.
+	Learning happens collectively: an agent accepting a trade signals to the receiving agent that his position is superior to the one of the other agent. The following movement of the receiving agent is thus an attempt to improve his own position on the grid. This way trading acts as a kind of communication between agents as it does in the real world. Money flowing from urban to rural areas for example often leads to a flow of people from rural to urban areas \footnote{Davis, Kingsley. "The Urbanization of the Human Population"}.
 
 \subsubsection{Prediction}
-	 prediction mechanism built into the agents is the movement reversing. An agent always remembers how much he received in the last tick and compares this value to how much he receives in the current tick, if he received more at his old position he returns to the old position. This is similar to temporal difference learning in so far as the agents change their prediction of which direction leads to fruitful soil based on the prediction they have made before and on the result this prediction has brought.
+	 The prediction mechanism built into the agents is the movement reversing. An agent always remembers how much he received in the last iteration and compares this value to how much he has received in the following one. If he has received more in the previous iteration he returns to the old position. This is similar to temporal difference learning in so far as the agents change their prediction of which direction leads to a beneficial location based on the prediction they have made before and on the result this prediction has brought.
 
 \subsubsection{Sensing}
-	First and foremost each agent receives feedback in each tick on how fruitful the soil is he is positioned on. This might give him a wrong idea about the true quality of the soil though since the resources of one parcel are always distributed among all its inhabitants. Very closely related to the previous point we want to emphasize again that the sensation of an agent is enhanced by the network he is connected to: through his neighbours and the amount of resources they have the agent gets a pretty good idea of where the soil could be fruitful.
+	First and foremost each agent receives feedback in each iteration in the form of how many resources he has received in the parcel he is located on at the current time. This might give him a wrong idea about the true quality of the parcel though since the resources of one parcel are always distributed among all its inhabitants. Very closely related to the previous point we want to emphasize again that the sensation of an agent is enhanced by the network he is connected to: through his neighbours and the amount of resources they have the agent gets a pretty good idea of where the soil could be fruitful.
 
 \subsubsection{Interaction}
-	the obvious interaction between agents is the trading.... don't know what to write
+	The agents interact with two things: their neighbours, and the grid they are locate on. With their neighbours, they are able to trade and thus to receive or send resources. They also interact spatially, by moving around in a fashion already explained above.
 
 \subsubsection{Stochasticity}
-	age of the agents is modeled with stochasticity: instead of giving each agent an explicit age and fixing the age of death or increasing the chance of death with increasing age we simply set the chance of death for all agents in a certain tick constant to 1/1000. This gives an expected age of 1000 ticks for each agent. Analogously we deal with spawning new agents (giving birth). Similarly we model the behavioural trait of agents wanting to trade or not, the willingness-to-trade factor.  
+	The age of the agents is modeled with stochasticity: instead of giving each agent an explicit age and fixing the age of death or increasing the chance of death with increasing age we simply set the chance of death for all agents in a certain tick constant to the circle-of-life-factor ($\clf$). This gives an expected age of $\frac{1}{\clf}$ ticks for each agent. The reproduction is modelled analogously, the chance that an agent spontaneously spawns a new agent is equal to $\clf$.
 
 \subsubsection{Collectives}
 \subsubsection{Observation}
 
 \subsection{Initialization}
-	In the beginning, the soil quality is computed according to a given distribution function and a cellular grid is drawn on the plane dependingly. The yellower areas correspond to better, the redder to worse soil quality. 500 Agents are created and randomly distributed on the plane. The connections between Agents that correspond to the knowing-relationship are made such that those Agents that are nearer to each other have a higher possibility to be adjacent. The sympathy values between all agents are initially set to zero. Each Agent starts with the same amount of resources, namely [AMOUNT??].
+	In the beginning, a fixed number of agents are created and distributed on the grid. While doing this, each parcel counts how many agents are located on itself to be able to later distribute the resource it receives evenly among all agents located on it. Next, neighbours are assigned by connecting nearby agents. The nearer two agent are, the more likely it is that they establish a connection. Each agent receives a starting capital, ranging from 0 ta a fixed point. Since all agents are located on a random place on the grid, many agents are placed in a unfavourable position and will immediately seek to migrate to a better place.
 
 \subsection{Input data}
 \subsection{Submodels}
