@@ -1,4 +1,4 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -6,5 +6,43 @@
   \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
   \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
+
+\bibitem[{Davis(1965)}]{davis}
+Davis, K. (1965).
+\newblock The urbanization of the human population.
+\newblock \textit{Scientific American}, \textit{213}
+
+\bibitem[{Grimm et~al.(2010)}]{odd}
+Grimm, V. et~al. (2010).
+\newblock A standard protocol for describing individual-based and agent-based
+  models.
+\newblock \textit{Ecological Modelling}, \textit{221}
+
+\bibitem[{Jevons(1876)}]{jevons}
+Jevons, W.~S. (1876).
+\newblock Money and the mechanism of exchange.
+\newblock \textit{New York: D. Appleton and Co.}
+
+\bibitem[{Libby~Rittenberg(2009)}]{rittenberg}
+Libby~Rittenberg, T.~T. (2009).
+\newblock \textit{Principles of Microeconomics}.
+\newblock Flat World Knowledge
+
+\bibitem[{Loewenstein(2007)}]{lowenstein}
+Loewenstein, G. (2007).
+\newblock The scarecrow and the tin man: The vicissitudes of human sympathy and
+  caring.
+\newblock \textit{Review of General Psychology}
+
+\bibitem[{Marx(1867)}]{marx}
+Marx, K. (1867).
+\newblock \textit{Das Kapital}, vol.~1.
+\newblock Verlag von Otto Meisner
+
+\bibitem[{Moyes(1988)}]{moyes}
+Moyes, P. (1988).
+\newblock A note on minimally progressive taxation and absolute income
+  inequality.
+\newblock \textit{Soc Choice Welfare}
 
 \end{thebibliography}
