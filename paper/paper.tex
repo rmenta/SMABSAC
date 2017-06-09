@@ -33,7 +33,7 @@
 \title{Modelling Mass Migration based on Spatial\\ Generative Agent-Based Trade Simulation}
 
 %All authors should be included in the submission. To anonymise the submission, set to 'true' the \reviewcopy command below. However, before submitting  you can check that all the informations you entered are correct by temporarily setting it to 'false'. Please remember to set it back to 'true' before the submission.
-\reviewcopy{true} 
+\reviewcopy{false} 
 
 \author[1]{Manuel Bröchin}
 \affil[1]{Swiss Federal Institute of Technology in Zurich, Rämistr. 101, CH-8092 Zürich, Switzerland}
@@ -78,11 +78,16 @@
 % EXTRA PACKAGES. Please place here any extra package you need along with your own command definitions
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
+
 \newcommand{\gdf}{\mathit{GDF}}
 \newcommand{\wtf}{\mathit{WTF}}
 \newcommand{\clf}{\mathit{CLF}}
 \newcommand{\col}{\mathit{COL}}
 \newcommand{\mgf}{\mathit{MGF}}
+
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{wrapfig}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -190,6 +195,26 @@ Our simulation works with synchronous updates (ticks), meaning all agents do the
 		&\sum_{p \in \mathit{Parcels}} f_\mathit{dist}(\mathit{p.pos},\, \mathit{time}) \cdot n \cdot \col &&= n \cdot \col\\
 		\Longleftrightarrow \quad &\sum_{p \in \mathit{Parcels}} f_\mathit{dist}(\mathit{p.pos},\, \mathit{time}) &&= 1
 	\end{alignat}
+	A distribution function that can be used to model a static environment is depicted in figure \ref{fig:dist_funct}.
+	\begin{figure}[h!]
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[
+					colormap/cool,
+					]
+					\addplot3[
+						mesh,
+						%TODO: change samples
+						samples=50,
+						domain=0:1,
+					]
+					{(sin(deg(x*8)) * cos(deg(y*8)) + 1) / 2};
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Example of a distribution function\label{fig:dist_funct}}
+		\end{center}
+	\end{figure}
+	We see that the resources are unevenly distributed, thus the agents have to adapt themselves to this environment.
 	
 \subsubsection{Trade requests}
 	Now all agents have the possibility to propose a trade with exactly one of their neighbours. They do this by finding the best match for a trading partner in the list of their neighbours. The best trading partner is found by evaluating the following formula:
@@ -298,8 +323,11 @@ We succeeded in building a system which is highly adaptive despite being based s
 
 \section{Discussion}
 Despite the abstract nature of this model it nevertheless allows us to draw positive, as well as normative conclusions which we will illustrate in the following.
-The cause and process of migration in our model coincides on many levels with theories trying to explain migration. Two ways in which migration is understood are neoclassical economics and relative deprivation theory \citep{jennissen}. Migration from the perspective of neoclassical economics is a problem of demand and supply: Having lower wages in one place and higher wages in another place indicates that the first one has a surplus of labour and a shortage of money while the latter is directly opposite. People moving from the regions with lower wages to the regions with higher wages are, from a neoclassical economical perspective, the logical consequence. We can observe exactly this behaviour in our model: first we check that our agents fulfill the three assumptions of neoclassical economics \citep{weintraub}. Our agents have rational preferences in the form of GDF and WTF and they maximize utility; both of these assumptions have already been broadly explained in the section on design choices. Other than that our agents also decide everything on the basis of full and relevant information, this together with the flow of information in our model has also been discussed in said section. We therefore can conclude that our agents are well-suited for a neoclassical model. Running the model with a realistic distribution function we observe that some time after the random initial distribution of the agents an equilibrium is reached where agents are distributed around the areas of high prosperity; the market has reached an equilibrium.
+
+The cause and process of migration in our model coincides on many levels with theories trying to explain migration. Two ways in which migration is understood are neoclassical economics and relative deprivation theory \citep{jennissen}. Migration from the perspective of neoclassical economics is a problem of demand and supply: Having lower wages in one place and higher wages in another place indicates that the first one has a surplus of labour and a shortage of money while the latter is directly opposite. People moving from the regions with lower wages to the regions with higher wages are, from a neoclassical economical perspective, the logical consequence. We can observe exactly this behaviour in our model: first we check that our agents fulfil the three assumptions of neoclassical economics \citep{weintraub}. Our agents have rational preferences in the form of $\gdf$ and $\wtf$ and they maximize utility; both of these assumptions have already been broadly explained in the section on design choices. Other than that our agents also decide everything on the basis of full and relevant information, this together with the flow of information in our model has also been discussed in said section. We therefore can conclude that our agents are well-suited for a neoclassical model. Running the model with a realistic distribution function we observe that some time after the random initial distribution of the agents an equilibrium is reached where agents are distributed around the areas of high prosperity; the market has reached an equilibrium.
+
 Relative deprivation theory on the other hand explains migration from another perspective. Instead of viewing the system from a bird's eye perspective it looks at the individuals. Richard Schaefer defines relative deprivation in the following way: "the conscious experience of a negative discrepancy between legitimate expectations and present actualities." \citep{schaefer}. We can easily see that this is what happens in our model if we take a less bird's-eye-like perspective: agents learn that their neighbours fare better than themselves and thus want to improve their own position.
+
 Our model takes overpopulation of certain areas into consideration as resources are always distributed per parcel and all agents on a parcel share the resources it yields. We found that building mechanisms into our model that allow an agent to compare its current position to the position in the last tick vastly improved the longevity of the agents as it reduces overpopulation of certain areas. In the real world we often observe the bad impacts rural flight has on the fleeing people as many find their situation actually worsened compared to before \citep{weeks}. One problem is that big bursts of rural flight lead to an increase in population which can not be dealt with by the existing infrastructure \citep{harris}. This is very similar to the effect in our model before our amelioration. Our model therefore suggests that enabling higher mobility of migrants could lead to better results.
 
 Most of our observations based on running the simulation and observing the behaviour. Another approach would be to actually let the agents learn the best initial configurations. This would provide better ground for answering the question of what kind of society works best in this model. 

@@ -421,7 +421,7 @@ public class God extends JPanel {
 		double hard = Math.sin(x/5 * Math.sin(y) + (double)tickCounter/1000) * Math.cos(y/2 + (double)tickCounter/4000);
 		Random r = new Random();
 		double stat = r.nextDouble();
-		return (hard + 1)/2;
+		return (staticc + 1)/2;
 	}
 	
 	private double getDistance(int x1, int y1, int x2, int y2) {
